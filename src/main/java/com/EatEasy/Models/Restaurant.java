@@ -8,21 +8,24 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.UUID;
 
-//Esto se pone siempre
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private UUID uuid;
     private String name;
-    private String email;
-    private String password;
+    private String location;
+    private String foodStyle;
+    private String timetable;
+    private Integer capacity;
+    private String phoneNumber;
+
     @OneToMany
-    private List<FavoriteRestaurant> favoriteRestaurants;
+    private List<Image> images;
 
     @OneToMany
     private List<Booking> bookings;
@@ -30,5 +33,3 @@ public class User {
     @OneToMany
     private List<Review> reviews;
 }
-
-
