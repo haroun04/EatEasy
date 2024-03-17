@@ -1,4 +1,4 @@
-package com.EatEasy.repository;
+package com.EatEasy.Repository;
 
 public class prlod {
 }
