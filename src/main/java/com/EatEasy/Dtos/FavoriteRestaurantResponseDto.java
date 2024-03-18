@@ -1,6 +1,7 @@
 package com.EatEasy.Dtos;
 
 import com.EatEasy.Models.Restaurant;
+import com.EatEasy.Models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FavoriteRestaurantResponseDto {
     private Long id;
-    private Long userId;
-    private Restaurant restaurantId;
+    private User user;
+    private Restaurant restaurant;
 }

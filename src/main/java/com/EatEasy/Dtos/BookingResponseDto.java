@@ -17,6 +17,6 @@ public class BookingResponseDto {
     private UUID uuid;
     private Integer numberDiners;
     private LocalDateTime createdAt;
-    private User userId;
-    private Restaurant restaurantId;
+    private User user;
+    private Restaurant restaurant;
 }

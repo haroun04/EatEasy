@@ -29,8 +29,8 @@ public class BookingMapper {
                 booking.getUuid(),
                 booking.getNumberDiners(),
                 booking.getCreatedAt(),
-                booking.getUser() != null ? booking.getUser().getId() : null,
-                booking.getRestaurant() != null ? booking.getRestaurant().getId() : null
+                booking.getUser(),
+                booking.getRestaurant()
         );
     }
 

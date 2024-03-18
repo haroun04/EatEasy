@@ -4,13 +4,11 @@ import com.EatEasy.Dtos.UserRequestDto;
 import com.EatEasy.Dtos.UserResponseDto;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Component
 public class UserMapper {
-
-    public UserResponseDto toResponseDto(User user) {
+    public UserResponseDto toResponse(User user) {
         return new UserResponseDto(
                 user.getId(),
                 user.getUuid(),
@@ -22,15 +20,30 @@ public class UserMapper {
         );
     }
 
-    public List<UserResponseDto> toResponseDtoList(List<User> users) {
-        return users.stream().map(this::toResponseDto).collect(Collectors.toList());
+    public User toModel(UserRequestDto userRequestDto) {
+        return new User(
+                0L, // Asigna un valor válido para la base de datos
+                UUID.randomUUID(),
+                userRequestDto.getName(),
+                userRequestDto.getEmail(),
+                userRequestDto.getPassword(),
+                null, // Dejar las listas como nulas por ahora
+                null,
+                null
+        );
     }
 
-    public User toModel(UserRequestDto userRequestDto) {
-        User user = new User();
-        user.setName(userRequestDto.getName());
-        user.setEmail(userRequestDto.getEmail());
-        user.setPassword(userRequestDto.getPassword());
-        return user;
+
+    public User toModelfromRequestDto(Long userId) {
+        return new User(
+                userId,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
     }
 }

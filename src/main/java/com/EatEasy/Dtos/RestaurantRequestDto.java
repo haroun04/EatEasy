@@ -20,4 +20,6 @@ public class RestaurantRequestDto {
     private String timeTable;
     private Integer capacity;
     private String phoneNumber;
+
+
 }

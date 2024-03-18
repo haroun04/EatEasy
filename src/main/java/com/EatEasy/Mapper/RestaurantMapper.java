@@ -50,4 +50,20 @@ public class RestaurantMapper {
                 null
         );
     }
+
+    public Restaurant toModelfromRequestDto(Long restaurantId) {
+        return new Restaurant(
+                restaurantId,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
 }

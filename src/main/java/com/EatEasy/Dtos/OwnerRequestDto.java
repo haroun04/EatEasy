@@ -15,4 +15,6 @@ public class OwnerRequestDto {
     private String name;
     private String email;
     private String password;
+    //private List<Restaurant> restaurants;
+    //private List<Review> reviews;
 }
