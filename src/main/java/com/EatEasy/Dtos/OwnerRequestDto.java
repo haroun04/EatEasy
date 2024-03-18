@@ -1,5 +1,7 @@
 package com.EatEasy.Dtos;
 
+import com.EatEasy.Models.Restaurant;
+import com.EatEasy.Models.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,6 @@ public class OwnerRequestDto {
     private String name;
     private String email;
     private String password;
-    private List<Long> restaurantIds;
-    private List<Long> reviewIds;
+    private List<Restaurant> restaurants;
+    private List<Review> reviews;
 }

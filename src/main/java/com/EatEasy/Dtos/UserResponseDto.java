@@ -1,5 +1,8 @@
 package com.EatEasy.Dtos;
 
+import com.EatEasy.Models.Booking;
+import com.EatEasy.Models.FavoriteRestaurant;
+import com.EatEasy.Models.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +18,7 @@ public class UserResponseDto {
     private UUID uuid;
     private String name;
     private String email;
-    private List<Long> favoriteRestaurantIds;
-    private List<Long> bookingIds;
-    private List<Long> reviewIds;
+    private List<FavoriteRestaurant> favoriteRestaurants;
+    private List<Booking> bookings;
+    private List<Review> reviews;
 }
