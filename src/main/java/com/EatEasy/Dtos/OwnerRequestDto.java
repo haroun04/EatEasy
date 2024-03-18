@@ -10,9 +10,8 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class OwnerRequestDto {
-    private String name;
-    private String email;
-    private String password;
+    private final String name;
+    private final String email;
+    private final String password;
 }

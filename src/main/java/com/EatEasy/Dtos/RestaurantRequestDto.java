@@ -12,12 +12,11 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class RestaurantRequestDto {
-    private String name;
-    private String location;
-    private String foodStyle;
-    private String timeTable;
-    private Integer capacity;
-    private String phoneNumber;
+    private final String name;
+    private final String location;
+    private final String foodStyle;
+    private final String timeTable;
+    private final Integer capacity;
+    private final String phoneNumber;
 }

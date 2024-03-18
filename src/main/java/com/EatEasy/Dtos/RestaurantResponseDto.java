@@ -12,17 +12,16 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class RestaurantResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String name;
-    private String location;
-    private String foodStyle;
-    private String timeTable;
-    private Integer capacity;
-    private String phoneNumber;
-    private List<Image> images;
-    private List<Booking> bookingIds;
-    private List<Review> reviewIds;
+    private final Long id;
+    private final UUID uuid;
+    private final String name;
+    private final String location;
+    private final String foodStyle;
+    private final String timeTable;
+    private final Integer capacity;
+    private final String phoneNumber;
+    private final List<Image> images;
+    private final List<Booking> bookingIds;
+    private final List<Review> reviewIds;
 }

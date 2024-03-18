@@ -12,13 +12,12 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String name;
-    private String email;
-    private List<FavoriteRestaurant> favoriteRestaurants;
-    private List<Booking> bookings;
-    private List<Review> reviews;
+    private final Long id;
+    private final UUID uuid;
+    private final String name;
+    private final String email;
+    private final List<FavoriteRestaurant> favoriteRestaurants;
+    private final List<Booking> bookings;
+    private final List<Review> reviews;
 }

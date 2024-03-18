@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class FavoriteRestaurantRequestDto {
-    private Long userId;
-    private Long restaurantId;
+    private final Long userId;
+    private final Long restaurantId;
 }

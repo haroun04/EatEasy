@@ -10,11 +10,10 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class ReviewRequestDto {
-    private String comment;
-    private Integer assessment;
-    private LocalDateTime createdAt;
-    private User userId;
-    private Restaurant restaurantId;
+    private final String comment;
+    private final Integer assessment;
+    private final LocalDateTime createdAt;
+    private final User userId;
+    private final Restaurant restaurantId;
 }

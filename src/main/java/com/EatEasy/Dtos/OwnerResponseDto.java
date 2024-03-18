@@ -11,12 +11,11 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class OwnerResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String name;
-    private String email;
-    private List<Restaurant> restaurants;
-    private List<Review> reviews;
+    private final Long id;
+    private final UUID uuid;
+    private final String name;
+    private final String email;
+    private final List<Restaurant> restaurants;
+    private final List<Review> reviews;
 }

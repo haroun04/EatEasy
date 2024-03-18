@@ -22,7 +22,7 @@ public class ImageMapper {
         return new ImageResponseDto(
                 image.getId(),
                 image.getUrl(),
-                image.getRestaurant() != null ? image.getRestaurant().getId() : null
+                image.getRestaurant()
         );
     }
 
@@ -37,7 +37,8 @@ public class ImageMapper {
         return new Image(
                 0L, // Asigna un valor válido para la base de datos
                 imageRequestDto.getUrl(),
-                imageRequestDto.getRestaurantId() != null ? restaurantMapper.toModel(imageRequestDto.getRestaurantId()) : null
+                imageRequestDto.getRestaurantId() != null ? restaurantMapper.toModelfromRequestDto(imageRequestDto.getRestaurantId()) : null
+
         );
     }
 }

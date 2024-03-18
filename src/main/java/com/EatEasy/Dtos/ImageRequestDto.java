@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class ImageRequestDto {
-    private String url;
-    private Long restaurantId;
+    private final String url;
+    private final Long restaurantId;
 }

@@ -3,6 +3,7 @@ package com.EatEasy.Mapper;
 import com.EatEasy.Models.Restaurant;
 import com.EatEasy.Dtos.RestaurantRequestDto;
 import com.EatEasy.Dtos.RestaurantResponseDto;
+import com.EatEasy.Models.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -45,6 +46,21 @@ public class RestaurantMapper {
                 restaurantRequestDto.getTimeTable(),
                 restaurantRequestDto.getCapacity(),
                 restaurantRequestDto.getPhoneNumber(),
+                null,
+                null,
+                null
+        );
+    }
+    public Restaurant toModelfromRequestDto(Long restaurantId) {
+        return new Restaurant(
+                restaurantId,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 null,
                 null,
                 null

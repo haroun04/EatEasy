@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class BookingRequestDto {
-    private Integer numberDiners;
-    private Long userId;
-    private Long restaurantId;
+    private final Integer numberDiners;
+    private final Long userId;
+    private final Long restaurantId;
 }

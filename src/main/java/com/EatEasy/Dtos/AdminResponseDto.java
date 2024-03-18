@@ -8,9 +8,8 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class AdminResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String name;
+    private final Long id;
+    private final UUID uuid;
+    private final String name;
 }

@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class ImageResponseDto {
-    private Long id;
-    private String url;
-    private Restaurant restaurantId;
+    private final Long id;
+    private final String url;
+    private final Restaurant  restaurantId;
 }

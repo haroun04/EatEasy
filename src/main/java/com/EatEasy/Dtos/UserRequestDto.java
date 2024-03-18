@@ -12,10 +12,8 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserRequestDto {
-    private String name;
-    private String email;
-    private String password;
-    private List<FavoriteRestaurant> favoriteRestaurants;
+    private final String name;
+    private final String email;
+    private final String password;
 }

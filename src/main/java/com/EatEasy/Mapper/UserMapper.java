@@ -33,4 +33,16 @@ public class UserMapper {
         user.setPassword(userRequestDto.getPassword());
         return user;
     }
+    public User toModelfromRequestDto(Long userID) {
+        return new User(
+                userID,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
 }

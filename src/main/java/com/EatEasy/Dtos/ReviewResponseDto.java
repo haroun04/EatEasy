@@ -9,13 +9,12 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class ReviewResponseDto {
-    private Long id;
-    private UUID uuid;
-    private String comment;
-    private Integer assessment;
-    private LocalDateTime createdAt;
-    private Long userId;
-    private Long restaurantId;
+    private final Long id;
+    private final UUID uuid;
+    private final String comment;
+    private final Integer assessment;
+    private final LocalDateTime createdAt;
+    private final Long userId;
+    private final Long restaurantId;
 }

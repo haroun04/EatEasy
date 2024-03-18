@@ -11,12 +11,11 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class BookingResponseDto {
-    private Long id;
-    private UUID uuid;
-    private Integer numberDiners;
-    private LocalDateTime createdAt;
-    private User userId;
-    private Restaurant restaurantId;
+    private final Long id;
+    private final UUID uuid;
+    private final Integer numberDiners;
+    private final LocalDateTime createdAt;
+    private final User userId;
+    private final Restaurant restaurantId;
 }
