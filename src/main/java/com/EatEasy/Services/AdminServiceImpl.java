@@ -2,6 +2,7 @@ package com.EatEasy.Services;
 
 import com.EatEasy.Models.Admin;
 import com.EatEasy.Repository.AdminRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class AdminServiceImpl implements AdminService {
 
     private final AdminRepository adminRepository;
@@ -25,8 +27,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin findById(Long id) {
-        Optional<Admin> adminOptional = adminRepository.findById(id);
-        return adminOptional.orElse(null);
+        return adminRepository.findById(id).orElseThrow();
     }
 
     @Override
@@ -40,12 +41,15 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin update(Long id, Admin admin) {
-        if (adminRepository.existsById(id)) {
-            admin.setId(id); // Asigna el ID al administrador para asegurarse de que se actualice el administrador correcto
+    public Admin update(Long id, Admin model) {
+        Optional<Admin> adminOptional = adminRepository.findById(id);
+        if (adminOptional.isPresent()) {
+            Admin admin = adminOptional.get();
+            admin.setName(model.getName());
+            admin.setPassword(model.getPassword());
             return adminRepository.save(admin);
         }
-        return null; // O puedes lanzar una excepción o realizar otras acciones en caso de que el ID no exista
+        return null;
     }
 
     @Override
