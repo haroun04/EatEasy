@@ -18,6 +18,4 @@ public class UserRequestDto {
     private String email;
     private String password;
     private List<FavoriteRestaurant> favoriteRestaurants;
-    private List<Booking> bookings;
-    private List<Review> reviews;
 }

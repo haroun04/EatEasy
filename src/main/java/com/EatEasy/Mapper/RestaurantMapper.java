@@ -19,12 +19,12 @@ public class RestaurantMapper {
                 restaurant.getName(),
                 restaurant.getLocation(),
                 restaurant.getFoodStyle(),
-                restaurant.getTimeTable(),
+                restaurant.getTimetable(),
                 restaurant.getCapacity(),
                 restaurant.getPhoneNumber(),
-                restaurant.getImages().stream().map(Image::getId).collect(Collectors.toList()),
-                restaurant.getBookings().stream().map(Booking::getId).collect(Collectors.toList()),
-                restaurant.getReviews().stream().map(Review::getId).collect(Collectors.toList())
+                restaurant.getImages(),
+                restaurant.getBookings(),
+                restaurant.getReviews()
         );
     }
 

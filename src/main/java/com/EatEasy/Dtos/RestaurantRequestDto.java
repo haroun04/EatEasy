@@ -20,7 +20,4 @@ public class RestaurantRequestDto {
     private String timeTable;
     private Integer capacity;
     private String phoneNumber;
-    private List<Image> images;
-    private List<Booking> bookings;
-    private List<Review> reviews;
 }
