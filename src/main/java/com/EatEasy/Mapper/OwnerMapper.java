@@ -27,10 +27,15 @@ public class OwnerMapper {
     }
 
     public Owner toModel(OwnerRequestDto ownerRequestDto) {
-        Owner owner = new Owner();
-        owner.setName(ownerRequestDto.getName());
-        owner.setEmail(ownerRequestDto.getEmail());
-        owner.setPassword(ownerRequestDto.getPassword());
-        return owner;
+        return new Owner(
+                0L,
+                null,
+                ownerRequestDto.getName(),
+                ownerRequestDto.getEmail(),
+                ownerRequestDto.getPassword(),
+                null, // restaurants
+                null  // reviews
+        );
     }
+
 }

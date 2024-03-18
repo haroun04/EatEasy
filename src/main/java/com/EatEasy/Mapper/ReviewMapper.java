@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,11 +40,14 @@ public class ReviewMapper {
     }
 
     public Review toModel(ReviewRequestDto reviewRequestDto) {
-        Review review = new Review();
-        review.setComment(reviewRequestDto.getComment());
-        review.setAssessment(reviewRequestDto.getAssessment());
-        review.setCreatedAt(reviewRequestDto.getCreatedAt());
-        // Los IDs de usuario y restaurante se asignarán como referencias más adelante
-        return review;
+        return new Review(
+                null, // Dejar el ID como nulo o 0, dependiendo de cómo se maneje en la clase Review
+                UUID.randomUUID(), // Generar un UUID nuevo
+                reviewRequestDto.getComment(),
+                reviewRequestDto.getAssessment(),
+                reviewRequestDto.getCreatedAt(),
+                null, // Dejar el usuario como nulo para asignarlo más tarde
+                null // Dejar el restaurante como nulo para asignarlo más tarde
+        );
     }
 }
