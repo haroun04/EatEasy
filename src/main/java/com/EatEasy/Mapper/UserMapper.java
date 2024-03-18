@@ -27,11 +27,16 @@ public class UserMapper {
     }
 
     public User toModel(UserRequestDto userRequestDto) {
-        User user = new User();
-        user.setName(userRequestDto.getName());
-        user.setEmail(userRequestDto.getEmail());
-        user.setPassword(userRequestDto.getPassword());
-        return user;
+        return new User(
+                null,
+                null,
+                userRequestDto.getName(),
+                userRequestDto.getEmail(),
+                userRequestDto.getPassword(),
+                null,
+                null,
+                null
+        );
     }
     public User toModelfromRequestDto(Long userID) {
         return new User(
