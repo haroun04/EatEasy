@@ -1,4 +1,6 @@
 package com.EatEasy.Mapper;
+import com.EatEasy.Dtos.OwnerResponseDto;
+import com.EatEasy.Models.Owner;
 import com.EatEasy.Models.Restaurant;
 import com.EatEasy.Models.Review;
 import com.EatEasy.Dtos.ReviewRequestDto;
@@ -23,7 +25,7 @@ public class ReviewMapper {
     }
 
 
-    public ReviewResponseDto toResponseDto(Review review) {
+    public ReviewResponseDto toResponse(Review review) {
         return new ReviewResponseDto(
                 review.getId(),
                 review.getUuid(),
@@ -36,7 +38,7 @@ public class ReviewMapper {
     }
 
     public List<ReviewResponseDto> toResponseDtoList(List<Review> reviews) {
-        return reviews.stream().map(this::toResponseDto).collect(Collectors.toList());
+        return reviews.stream().map(this::toResponse).collect(Collectors.toList());
     }
 
     public Review toModel(ReviewRequestDto reviewRequestDto) {

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class UserMapper {
 
-    public UserResponseDto toResponseDto(User user) {
+    public UserResponseDto toResponse(User user) {
         return new UserResponseDto(
                 user.getId(),
                 user.getUuid(),
@@ -23,7 +23,7 @@ public class UserMapper {
     }
 
     public List<UserResponseDto> toResponseDtoList(List<User> users) {
-        return users.stream().map(this::toResponseDto).collect(Collectors.toList());
+        return users.stream().map(this::toResponse).collect(Collectors.toList());
     }
 
     public User toModel(UserRequestDto userRequestDto) {
