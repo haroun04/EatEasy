@@ -72,14 +72,13 @@ public class InitialDataCreationService {
     }
 
     public LocalDateTime generateReservedAt() {
-        int openingHour = ThreadLocalRandom.current().nextInt(7, 9);
-        int closingHour = ThreadLocalRandom.current().nextInt(18, 22);
-
-        int hour = ThreadLocalRandom.current().nextInt(openingHour, closingHour);
+        int year = ThreadLocalRandom.current().nextInt(2024, 2025);
+        int month = ThreadLocalRandom.current().nextInt(6, 13);
+        int day = ThreadLocalRandom.current().nextInt(10, 29);
+        int hour = ThreadLocalRandom.current().nextInt(11, 20);
         int minute = ThreadLocalRandom.current().nextInt(0, 60);
 
-        LocalDateTime today = LocalDateTime.now();
-        LocalDateTime reservedAt = LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), hour, minute);
+        LocalDateTime reservedAt = LocalDateTime.of(year, month, day, hour, minute);
 
         return reservedAt;
     }

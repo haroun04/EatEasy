@@ -20,10 +20,9 @@ public class EatEasyApplication {
 			service.createFakerAdmin(5);
 			service.createFakerOwner(6);
 			service.createFakerBooking(10);
+			service.createFakerFavoriteRestaurant(8);
 			service.createFakerImage(15);
 			service.createFakerReview(20);
-			service.createFakerFavoriteRestaurant(8);
-
 		};
 	}
 }
