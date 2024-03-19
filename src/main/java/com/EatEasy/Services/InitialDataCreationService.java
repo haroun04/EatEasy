@@ -25,6 +25,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +45,8 @@ public class InitialDataCreationService {
         for (int i = 0; i < number; i++) {
             Admin admin = new Admin(
                     null,
-                    faker.name().fullName(),
+                    UUID.randomUUID(),
+                    faker.name().firstName(),
                     faker.internet().password()
             );
             adminService.save(admin);
@@ -53,102 +55,160 @@ public class InitialDataCreationService {
 
     public void createFakerBooking(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
+
+        List<User> users = userService.findAll();
+        List<Restaurant> restaurants = restaurantService.findAll();
+
         for (int i = 0; i < number; i++) {
-            Booking booking = new Booking(
-                    null,
-                    faker.number().randomNumber(),
-                    faker.date().future(),
-                    faker.number().randomDigit()
-            );
+            int userIndex = faker.number().numberBetween(0, users.size());
+            int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
+            int numberDiners = faker.number().numberBetween(1, 10);
+
+            User user = users.get(userIndex);
+            Restaurant restaurant = restaurants.get(restaurantIndex);
+
+            Booking booking = new Booking();
+            booking.setUuid(UUID.randomUUID());
+            booking.setNumberDiners(numberDiners);
+            booking.setCreatedAt(LocalDateTime.now());
+            booking.setUser(user);
+            booking.setRestaurant(restaurant);
+
             bookingService.save(booking);
         }
     }
 
     public void createFakerFavoriteRestaurant(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
+
+        List<User> users = userService.findAll();
+        List<Restaurant> restaurants = restaurantService.findAll();
+
         for (int i = 0; i < number; i++) {
-            FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant(
-                    null,
-                    faker.food().dish(),
-                    faker.food().cuisine(),
-                    faker.address().city()
-            );
+            int userIndex = faker.number().numberBetween(0, users.size());
+            int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
+
+            User user = users.get(userIndex);
+            Restaurant restaurant = restaurants.get(restaurantIndex);
+
+            FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
+            favoriteRestaurant.setUser(user);
+            favoriteRestaurant.setRestaurant(restaurant);
+
             favoriteRestaurantService.save(favoriteRestaurant);
         }
     }
 
     public void createFakerImage(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
+
+        List<Restaurant> restaurants = restaurantService.findAll();
+
         for (int i = 0; i < number; i++) {
-            Image image = new Image(
-                    null,
-                    faker.internet().image(),
-                    faker.lorem().sentence()
-            );
+            int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
+            String imageUrl = faker.internet().url();
+
+            Restaurant restaurant = restaurants.get(restaurantIndex);
+
+            Image image = new Image();
+            image.setUrl(imageUrl);
+            image.setRestaurant(restaurant);
+
             imageService.save(image);
         }
     }
 
     public void createFakerOwner(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
+
         for (int i = 0; i < number; i++) {
-            Owner owner = new Owner(
-                    null,
-                    faker.name().fullName(),
-                    faker.internet().emailAddress(),
-                    faker.internet().password()
-            );
+            Owner owner = new Owner();
+            owner.setUuid(UUID.randomUUID());
+            owner.setName(faker.name().fullName());
+            owner.setEmail(faker.internet().emailAddress());
+            owner.setPassword(faker.internet().password());
+
             ownerService.save(owner);
         }
     }
 
+
     public void createFakerRestaurant(int number) {
         if (number <= 0) return;
-        List<Owner> owners = ownerService.findAll();
+        Faker faker = new Faker();
+
         for (int i = 0; i < number; i++) {
-            Owner owner = owners.get(faker.number().numberBetween(0, owners.size()));
-            Restaurant restaurant = new Restaurant(
-                    null,
-                    UUID.randomUUID(),
-                    faker.company().name(),
-                    faker.address().city(),
-                    faker.food().cuisine(),
-                    faker.address().streetAddress(),
-                    faker.phoneNumber().cellPhone(),
-                    LocalTime.of(faker.number().numberBetween(6, 12), 0),
-                    LocalTime.of(faker.number().numberBetween(14, 22), 0),
-                    faker.number().numberBetween(10, 200)
-            );
-            restaurant.setOwner(owner);
+            Restaurant restaurant = new Restaurant();
+            restaurant.setUuid(UUID.randomUUID());
+            restaurant.setName(faker.company().name());
+            restaurant.setLocation(faker.address().fullAddress());
+            restaurant.setFoodStyle(cuisine());
+            restaurant.setTimetable(generateTimetable());
+            restaurant.setCapacity(faker.number().numberBetween(10, 100));
+            restaurant.setPhoneNumber(faker.phoneNumber().phoneNumber());
+
             restaurantService.save(restaurant);
         }
     }
 
+    public static String cuisine() {
+        String[] cuisines = {
+                "Italiana", "Mexicana", "Asiática", "Mediterránea", "Americana", "Vegetariana", "Vegana", "Griega"
+        };
+        int index = ThreadLocalRandom.current().nextInt(cuisines.length);
+        return cuisines[index];
+    }
+
+    public static String generateTimetable() {
+        int openingHour = ThreadLocalRandom.current().nextInt(6, 10); // Abre entre las 6 AM y las 9 AM
+        int closingHour = ThreadLocalRandom.current().nextInt(18, 23); // Cierra entre las 6 PM y las 10 PM
+
+        String timetable = String.format("%02d:00 AM - %02d:00 PM", openingHour, closingHour);
+        return timetable;
+    }
+
     public void createFakerReview(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
         List<User> users = userService.findAll();
+        List<Restaurant> restaurants = restaurantService.findAll();
+
         for (int i = 0; i < number; i++) {
-            User user = users.get(faker.number().numberBetween(0, users.size()));
-            Review review = new Review(
-                    null,
-                    faker.lorem().sentence(),
-                    faker.number().numberBetween(1, 5)
-            );
+            int userIndex = faker.number().numberBetween(0, users.size());
+            int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
+            User user = users.get(userIndex);
+            Restaurant restaurant = restaurants.get(restaurantIndex);
+
+            Review review = new Review();
+            review.setUuid(UUID.randomUUID());
+            review.setComment(faker.lorem().sentence());
+            review.setAssessment(faker.number().numberBetween(1, 5));
+            review.setCreatedAt(LocalDateTime.now());
             review.setUser(user);
+            review.setRestaurant(restaurant);
+
             reviewService.save(review);
         }
     }
 
+
     public void createFakerUser(int number) {
         if (number <= 0) return;
+        Faker faker = new Faker();
+
         for (int i = 0; i < number; i++) {
-            User user = new User(
-                    null,
-                    faker.name().username(),
-                    faker.internet().emailAddress(),
-                    faker.internet().password()
-            );
+            User user = new User();
+            user.setUuid(UUID.randomUUID());
+            user.setName(faker.name().fullName());
+            user.setEmail(faker.internet().emailAddress());
+            user.setPassword(faker.internet().password());
+
             userService.save(user);
         }
     }
+
 }
