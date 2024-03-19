@@ -33,8 +33,8 @@ public class OwnerMapper {
                 ownerRequestDto.getName(),
                 ownerRequestDto.getEmail(),
                 ownerRequestDto.getPassword(),
-                null, // restaurants
-                null  // reviews
+                null,
+                null
         );
     }
 

@@ -41,13 +41,13 @@ public class ReviewMapper {
 
     public Review toModel(ReviewRequestDto reviewRequestDto) {
         return new Review(
-                null, // Dejar el ID como nulo o 0, dependiendo de cómo se maneje en la clase Review
-                UUID.randomUUID(), // Generar un UUID nuevo
+                null,
+                UUID.randomUUID(),
                 reviewRequestDto.getComment(),
                 reviewRequestDto.getAssessment(),
                 reviewRequestDto.getCreatedAt(),
-                null, // Dejar el usuario como nulo para asignarlo más tarde
-                null // Dejar el restaurante como nulo para asignarlo más tarde
+                null,
+                null
         );
     }
 }

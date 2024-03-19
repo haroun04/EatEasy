@@ -30,7 +30,7 @@ public class AdminMapper {
 
     public Admin toModel(AdminRequestDto adminRequestDto) {
         return new Admin(
-                0L, // Asigna un valor válido para la base de datos
+                0L,
                 UUID.randomUUID(),
                 adminRequestDto.getName(),
                 adminRequestDto.getPassword()
