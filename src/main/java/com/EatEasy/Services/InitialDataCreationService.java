@@ -63,11 +63,25 @@ public class InitialDataCreationService {
             booking.setUuid(UUID.randomUUID());
             booking.setNumberDiners(numberDiners);
             booking.setCreatedAt(LocalDateTime.now());
+            booking.setReservedAt(generateReservedAt());
             booking.setUser(user);
             booking.setRestaurant(restaurant);
 
             bookingService.save(booking);
         }
+    }
+
+    public LocalDateTime generateReservedAt() {
+        int openingHour = ThreadLocalRandom.current().nextInt(7, 9);
+        int closingHour = ThreadLocalRandom.current().nextInt(18, 22);
+
+        int hour = ThreadLocalRandom.current().nextInt(openingHour, closingHour);
+        int minute = ThreadLocalRandom.current().nextInt(0, 60);
+
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime reservedAt = LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), hour, minute);
+
+        return reservedAt;
     }
 
     public void createFakerFavoriteRestaurant(int number) {

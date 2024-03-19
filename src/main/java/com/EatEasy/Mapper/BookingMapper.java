@@ -29,6 +29,7 @@ public class BookingMapper {
                 booking.getUuid(),
                 booking.getNumberDiners(),
                 booking.getCreatedAt(),
+                booking.getReservedAt(),
                 booking.getUser(),
                 booking.getRestaurant()
         );
@@ -46,6 +47,7 @@ public class BookingMapper {
                 0L,
                 UUID.randomUUID(),
                 bookingRequestDto.getNumberDiners(),
+                null,
                 null,
                 bookingRequestDto.getUserId() != null ? userMapper.toModelfromRequestDto(bookingRequestDto.getUserId()) : null,
                 bookingRequestDto.getRestaurantId() != null ? restaurantMapper.toModelfromRequestDto(bookingRequestDto.getRestaurantId()) : null

@@ -23,6 +23,9 @@ public class Booking {
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedDate
+    private LocalDateTime reservedAt;
+
     @ManyToOne
     private User user;
 
