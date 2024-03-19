@@ -18,6 +18,7 @@ public class Image {
     private String url;
 
     @ManyToOne
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
 }

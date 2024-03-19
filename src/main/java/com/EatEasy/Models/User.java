@@ -22,12 +22,15 @@ public class User {
     private String email;
     private String password;
     @OneToMany
+    @JoinColumn(name = "favoriteRestaurant_id")
     private List<FavoriteRestaurant> favoriteRestaurants;
 
     @OneToMany
+    @JoinColumn(name = "booking_id")
     private List<Booking> bookings;
 
     @OneToMany
+    @JoinColumn(name = "review_id")
     private List<Review> reviews;
 }
 

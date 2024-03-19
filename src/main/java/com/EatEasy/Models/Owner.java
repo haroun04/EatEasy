@@ -22,8 +22,10 @@ public class Owner {
     private String password;
 
     @OneToMany
+    @JoinColumn(name = "restaurant_id")
     private List<Restaurant> restaurants;
     @OneToMany
+    @JoinColumn(name = "review_id")
     private List<Review> reviews;
 
 }
