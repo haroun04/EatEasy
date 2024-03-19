@@ -5,6 +5,7 @@ import com.EatEasy.Dtos.OwnerResponseDto;
 import com.EatEasy.Mapper.OwnerMapper;
 import com.EatEasy.Models.Owner;
 import com.EatEasy.Services.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/owners")
+@Slf4j
 public class OwnerController {
 
     private final OwnerMapper ownerMapper;
@@ -26,6 +28,7 @@ public class OwnerController {
 
     @GetMapping("")
     public ResponseEntity<List<OwnerResponseDto>> getAllOwners() {
+        log.info("getAllOwners");
         List<Owner> owners = ownerService.findAll();
         List<OwnerResponseDto> responseDtoList = ownerMapper.toResponseDtoList(owners);
         return ResponseEntity.ok(responseDtoList);
@@ -33,6 +36,7 @@ public class OwnerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OwnerResponseDto> getOwnerById(@PathVariable Long id) {
+        log.info("getOwnerById");
         Owner owner = ownerService.findById(id);
         OwnerResponseDto responseDto = ownerMapper.toResponse(owner);
         return ResponseEntity.ok(responseDto);
@@ -40,6 +44,7 @@ public class OwnerController {
 
     @PostMapping("")
     public ResponseEntity<OwnerResponseDto> createOwner(@RequestBody OwnerRequestDto ownerRequestDto) {
+        log.info("createOwner");
         Owner owner = ownerMapper.toModel(ownerRequestDto);
         Owner savedOwner = ownerService.save(owner);
         OwnerResponseDto responseDto = ownerMapper.toResponse(savedOwner);
@@ -48,6 +53,7 @@ public class OwnerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<OwnerResponseDto> updateOwner(@PathVariable Long id, @RequestBody OwnerRequestDto ownerRequestDto) {
+        log.info("updateOwner");
         Owner owner = ownerMapper.toModel(ownerRequestDto);
         Owner updatedOwner = ownerService.update(id, owner);
         OwnerResponseDto responseDto = ownerMapper.toResponse(updatedOwner);
@@ -56,6 +62,7 @@ public class OwnerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOwner(@PathVariable Long id) {
+        log.info("deleteOwner");
         ownerService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
