@@ -27,14 +27,17 @@ public class Restaurant {
     private String phoneNumber;
 
     @OneToMany
-    @JoinColumn(name = "restaurant_id")
     private List<Image> images;
 
     @OneToMany
-    @JoinColumn(name = "booking_id")
     private List<Booking> bookings;
 
     @OneToMany
-    @JoinColumn(name = "review_id")
     private List<Review> reviews;
+
+    @OneToMany
+    private List<FavoriteRestaurant> favoriteRestaurants;
+
+    @ManyToOne
+    private Owner owner;
 }

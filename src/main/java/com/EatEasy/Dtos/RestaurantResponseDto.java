@@ -1,8 +1,6 @@
 package com.EatEasy.Dtos;
 
-import com.EatEasy.Models.Booking;
-import com.EatEasy.Models.Image;
-import com.EatEasy.Models.Review;
+import com.EatEasy.Models.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +22,6 @@ public class RestaurantResponseDto {
     private final List<Image> images;
     private final List<Booking> bookingIds;
     private final List<Review> reviewIds;
+    private final List<FavoriteRestaurant>favoriteRestaurantsIds;
+    private final Owner owner;
 }

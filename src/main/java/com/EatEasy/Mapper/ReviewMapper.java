@@ -16,12 +16,14 @@ import java.util.stream.Collectors;
 public class ReviewMapper {
     private final UserMapper userMapper;
     private final RestaurantMapper restaurantMapper;
+    private final OwnerMapper ownerMapper;
 
     //Constructor por defecto, autowired hay que ponerlo
     @Autowired
-    public ReviewMapper(UserMapper userMapper, RestaurantMapper restaurantMapper) {
+    public ReviewMapper(UserMapper userMapper, RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
         this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
+        this.ownerMapper = ownerMapper;
     }
 
 
@@ -33,7 +35,8 @@ public class ReviewMapper {
                 review.getAssessment(),
                 review.getCreatedAt(),
                 review.getUser().getId(),
-                review.getRestaurant().getId()
+                review.getRestaurant().getId(),
+                review.getOwner().getId()
         );
     }
 
@@ -48,6 +51,7 @@ public class ReviewMapper {
                 reviewRequestDto.getComment(),
                 reviewRequestDto.getAssessment(),
                 reviewRequestDto.getCreatedAt(),
+                null,
                 null,
                 null
         );

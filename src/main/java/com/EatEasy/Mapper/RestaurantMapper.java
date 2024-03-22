@@ -4,6 +4,7 @@ import com.EatEasy.Models.Restaurant;
 import com.EatEasy.Dtos.RestaurantRequestDto;
 import com.EatEasy.Dtos.RestaurantResponseDto;
 import com.EatEasy.Models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +13,11 @@ import java.util.stream.Collectors;
 
 @Component
 public class RestaurantMapper {
-
+    private final OwnerMapper ownerMapper;
+    @Autowired
+    public RestaurantMapper(OwnerMapper ownerMapper) {
+        this.ownerMapper = ownerMapper;
+    }
     public RestaurantResponseDto toResponse(Restaurant restaurant) {
         return new RestaurantResponseDto(
                 restaurant.getId(),
@@ -25,7 +30,9 @@ public class RestaurantMapper {
                 restaurant.getPhoneNumber(),
                 restaurant.getImages(),
                 restaurant.getBookings(),
-                restaurant.getReviews()
+                restaurant.getReviews(),
+                restaurant.getFavoriteRestaurants(),
+                restaurant.getOwner()
         );
     }
 
@@ -48,12 +55,16 @@ public class RestaurantMapper {
                 restaurantRequestDto.getPhoneNumber(),
                 null,
                 null,
+                null,
+                null,
                 null
         );
     }
     public Restaurant toModelfromRequestDto(Long restaurantId) {
         return new Restaurant(
                 restaurantId,
+                null,
+                null,
                 null,
                 null,
                 null,

@@ -1,3 +1,4 @@
+
 package com.EatEasy.Models;
 
 import jakarta.persistence.*;
@@ -18,7 +19,6 @@ public class Image {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
 }

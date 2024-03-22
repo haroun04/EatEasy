@@ -19,4 +19,5 @@ public class RestaurantRequestDto {
     private final String timeTable;
     private final Integer capacity;
     private final String phoneNumber;
+    private final Long owner;
 }

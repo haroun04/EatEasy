@@ -17,4 +17,5 @@ public class ReviewResponseDto {
     private final LocalDateTime createdAt;
     private final Long userId;
     private final Long restaurantId;
+    private final Long ownerId;
 }
