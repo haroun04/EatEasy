@@ -63,7 +63,7 @@ public class InitialDataCreationService {
             booking.setUuid(UUID.randomUUID());
             booking.setNumberDiners(numberDiners);
             booking.setCreatedAt(LocalDateTime.now());
-            booking.setReservedAt(generateReservedAt());
+            booking.setReservedAt(generateRandomReservedAt());
             booking.setUser(user);
             booking.setRestaurant(restaurant);
 
@@ -71,16 +71,15 @@ public class InitialDataCreationService {
         }
     }
 
-    public LocalDateTime generateReservedAt() {
-        int year = ThreadLocalRandom.current().nextInt(2024, 2025);
-        int month = ThreadLocalRandom.current().nextInt(6, 13);
-        int day = ThreadLocalRandom.current().nextInt(10, 29);
-        int hour = ThreadLocalRandom.current().nextInt(11, 20);
-        int minute = ThreadLocalRandom.current().nextInt(0, 60);
+    public LocalDateTime generateRandomReservedAt() {
+        LocalDateTime now = LocalDateTime.now().plusHours(1);
+        LocalDateTime maxDateTime = now.plusMonths(1);
 
-        LocalDateTime reservedAt = LocalDateTime.of(year, month, day, hour, minute);
+        long minMillis = now.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+        long maxMillis = maxDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+        long randomMillis = ThreadLocalRandom.current().nextLong(minMillis, maxMillis);
 
-        return reservedAt;
+        return LocalDateTime.ofInstant(java.time.Instant.ofEpochMilli(randomMillis), java.time.ZoneId.systemDefault());
     }
 
     public void createFakerFavoriteRestaurant(int number) {
