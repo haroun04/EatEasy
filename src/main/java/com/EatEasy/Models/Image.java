@@ -1,6 +1,7 @@
 
 package com.EatEasy.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Image {
     private Long id;
     private String url;
 
+    @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 

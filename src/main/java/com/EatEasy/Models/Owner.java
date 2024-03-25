@@ -1,5 +1,6 @@
 package com.EatEasy.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,9 +22,11 @@ public class Owner {
     private String email;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<Restaurant> restaurants;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<Review> reviews;
 

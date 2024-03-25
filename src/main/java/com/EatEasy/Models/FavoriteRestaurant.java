@@ -1,6 +1,7 @@
 
 package com.EatEasy.Models;
 //El primer import se pone * para el @ID
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,11 @@ public class FavoriteRestaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 }

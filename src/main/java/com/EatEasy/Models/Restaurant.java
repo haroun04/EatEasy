@@ -1,5 +1,6 @@
 package com.EatEasy.Models;
 //El primer import se pone * para el @ID
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,18 +27,23 @@ public class Restaurant {
     private Integer capacity;
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<Image> images;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<Booking> bookings;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<FavoriteRestaurant> favoriteRestaurants;
 
+    @JsonIgnore
     @ManyToOne
     private Owner owner;
 }
