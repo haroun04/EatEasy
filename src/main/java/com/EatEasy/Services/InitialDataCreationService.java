@@ -179,12 +179,15 @@ public class InitialDataCreationService {
         Faker faker = new Faker();
         List<User> users = userService.findAll();
         List<Restaurant> restaurants = restaurantService.findAll();
+        List<Owner> owners = ownerService.findAll();
 
         for (int i = 0; i < number; i++) {
             int userIndex = faker.number().numberBetween(0, users.size());
             int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
+            int ownerIndex = faker.number().numberBetween(0, owners.size());
             User user = users.get(userIndex);
             Restaurant restaurant = restaurants.get(restaurantIndex);
+            Owner owner = owners.get(ownerIndex);
 
             Review review = new Review();
             review.setUuid(UUID.randomUUID());
@@ -193,6 +196,7 @@ public class InitialDataCreationService {
             review.setCreatedAt(LocalDateTime.now());
             review.setUser(user);
             review.setRestaurant(restaurant);
+            review.setOwner(owner);
 
             reviewService.save(review);
         }

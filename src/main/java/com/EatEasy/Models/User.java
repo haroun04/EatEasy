@@ -21,12 +21,12 @@ public class User {
     private String name;
     private String email;
     private String password;
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<FavoriteRestaurant> favoriteRestaurants;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Booking> bookings;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 }

@@ -21,12 +21,10 @@ public class Owner {
     private String email;
     private String password;
 
-    @OneToMany
-    @JoinTable(name = "owner_restaurant")
+    @OneToMany(mappedBy = "owner")
     private List<Restaurant> restaurants;
 
-    @OneToMany
-    @JoinTable(name = "owner_review")
+    @OneToMany(mappedBy = "owner")
     private List<Review> reviews;
 
 }

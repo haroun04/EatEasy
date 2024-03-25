@@ -26,16 +26,16 @@ public class Restaurant {
     private Integer capacity;
     private String phoneNumber;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant")
     private List<Image> images;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant")
     private List<Booking> bookings;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant")
     private List<FavoriteRestaurant> favoriteRestaurants;
 
     @ManyToOne
