@@ -15,10 +15,10 @@ public class EatEasyApplication {
 	@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
+			service.createFakerOwner(6);
 			service.createFakerUser(25);
 			service.createFakerRestaurant(12);
 			service.createFakerAdmin(5);
-			service.createFakerOwner(6);
 			service.createFakerBooking(10);
 			service.createFakerFavoriteRestaurant(8);
 			service.createFakerImage(15);

@@ -143,8 +143,12 @@ public class InitialDataCreationService {
     public void createFakerRestaurant(int number) {
         if (number <= 0) return;
         Faker faker = new Faker();
+        List<Owner> owners = ownerService.findAll();
 
         for (int i = 0; i < number; i++) {
+            int ownerIndex = faker.number().numberBetween(0, owners.size());
+            Owner owner = owners.get(ownerIndex);
+
             Restaurant restaurant = new Restaurant();
             restaurant.setUuid(UUID.randomUUID());
             restaurant.setName(faker.company().name());
@@ -153,6 +157,7 @@ public class InitialDataCreationService {
             restaurant.setTimetable(generateTimetable());
             restaurant.setCapacity(faker.number().numberBetween(10, 100));
             restaurant.setPhoneNumber(faker.phoneNumber().phoneNumber());
+            restaurant.setOwner(owner);
 
             restaurantService.save(restaurant);
         }
