@@ -50,7 +50,7 @@ public class BookingMapper {
                 null,
                 null,
                 bookingRequestDto.getUserId() != null ? userMapper.toModelfromRequestDto(bookingRequestDto.getUserId()) : null,
-                bookingRequestDto.getRestaurantId() != null ? restaurantMapper.toModelfromRequestDto(bookingRequestDto.getRestaurantId()) : null
+                bookingRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(bookingRequestDto.getRestaurantId()) : null
         );
     }
 }

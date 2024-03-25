@@ -37,7 +37,7 @@ public class ImageMapper {
         return new Image(
                 0L,
                 imageRequestDto.getUrl(),
-                imageRequestDto.getRestaurantId() != null ? restaurantMapper.toModelfromRequestDto(imageRequestDto.getRestaurantId()) : null
+                imageRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(imageRequestDto.getRestaurantId()) : null
 
         );
     }

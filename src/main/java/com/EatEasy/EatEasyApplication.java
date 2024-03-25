@@ -17,6 +17,7 @@ public class EatEasyApplication {
 		return args -> {
 			service.createFakerOwner(6);
 			service.createFakerUser(25);
+			service.createFakerOwner(6);
 			service.createFakerRestaurant(12);
 			service.createFakerAdmin(5);
 			service.createFakerBooking(10);

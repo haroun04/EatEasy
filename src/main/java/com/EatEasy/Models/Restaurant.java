@@ -40,4 +40,5 @@ public class Restaurant {
 
     @ManyToOne
     private Owner owner;
+
 }

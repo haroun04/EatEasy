@@ -18,7 +18,6 @@ public class ReviewMapper {
     private final RestaurantMapper restaurantMapper;
     private final OwnerMapper ownerMapper;
 
-    //Constructor por defecto, autowired hay que ponerlo
     @Autowired
     public ReviewMapper(UserMapper userMapper, RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
         this.userMapper = userMapper;

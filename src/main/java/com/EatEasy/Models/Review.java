@@ -30,4 +30,7 @@ public class Review {
     @ManyToOne
     private Owner owner;
 
+
+
+
 }
