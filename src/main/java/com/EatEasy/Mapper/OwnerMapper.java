@@ -39,4 +39,16 @@ public class OwnerMapper {
         );
     }
 
+    public Owner toModelfromRequestDto(Long owner_Id) {
+        return new Owner(
+                owner_Id,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
 }

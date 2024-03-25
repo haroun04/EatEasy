@@ -46,4 +46,5 @@ public class Restaurant {
     @JsonIgnore
     @ManyToOne
     private Owner owner;
+
 }

@@ -95,6 +95,7 @@ public class InitialDataCreationService {
 
             User user = users.get(userIndex);
             Restaurant restaurant = restaurants.get(restaurantIndex);
+            Owner owner = restaurant.getOwner();
 
             FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
             favoriteRestaurant.setUser(user);
@@ -134,7 +135,6 @@ public class InitialDataCreationService {
             owner.setName(faker.name().fullName());
             owner.setEmail(faker.internet().emailAddress());
             owner.setPassword(faker.internet().password());
-
             ownerService.save(owner);
         }
     }
@@ -162,6 +162,7 @@ public class InitialDataCreationService {
             restaurantService.save(restaurant);
         }
     }
+
 
     public static String cuisine() {
         String[] cuisines = {
@@ -200,6 +201,8 @@ public class InitialDataCreationService {
             review.setAssessment(faker.number().numberBetween(1, 5));
             review.setCreatedAt(LocalDateTime.now());
             review.setUser(user);
+            review.setOwner(owner);
+
             review.setRestaurant(restaurant);
             review.setOwner(owner);
 
@@ -208,9 +211,13 @@ public class InitialDataCreationService {
     }
 
 
+
     public void createFakerUser(int number) {
         if (number <= 0) return;
         Faker faker = new Faker();
+
+        // Obtener una lista de propietarios existentes
+        List<Owner> owners = ownerService.findAll();
 
         for (int i = 0; i < number; i++) {
             User user = new User();
