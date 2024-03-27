@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bookings")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 public class BookingController {
     private final BookingMapper bookingMapper;
     private final BookingService bookingService;
