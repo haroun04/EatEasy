@@ -17,6 +17,7 @@ public class RestaurantResponseDto {
     private final Long id;
     private final UUID uuid;
     private final String name;
+    private final String url;
     private final String location;
     private final String foodStyle;
     private final String timeTable;

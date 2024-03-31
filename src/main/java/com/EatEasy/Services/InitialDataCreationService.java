@@ -113,12 +113,11 @@ public class InitialDataCreationService {
 
         for (int i = 0; i < number; i++) {
             int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
-            String imageUrl = faker.internet().url();
 
             Restaurant restaurant = restaurants.get(restaurantIndex);
 
             Image image = new Image();
-            image.setUrl(imageUrl);
+            image.setUrl(url());
             image.setRestaurant(restaurant);
 
             imageService.save(image);
@@ -152,6 +151,7 @@ public class InitialDataCreationService {
             Restaurant restaurant = new Restaurant();
             restaurant.setUuid(UUID.randomUUID());
             restaurant.setName(faker.company().name());
+            restaurant.setUrl(url());
             restaurant.setLocation(faker.address().fullAddress());
             restaurant.setFoodStyle(cuisine());
             restaurant.setTimetable(generateTimetable());
@@ -171,7 +171,13 @@ public class InitialDataCreationService {
         int index = ThreadLocalRandom.current().nextInt(cuisines.length);
         return cuisines[index];
     }
-
+    public static String url() {
+        String[] url = {
+                "assets/img/rest1.jpg",  "assets/img/rest3.jpeg", "assets/img/rest4.jpg", "assets/img/rest5.jpg"
+        };
+        int index = ThreadLocalRandom.current().nextInt(url.length);
+        return url[index];
+    }
     public static String generateTimetable() {
         int openingHour = ThreadLocalRandom.current().nextInt(6, 10); // Abre entre las 6 AM y las 9 AM
         int closingHour = ThreadLocalRandom.current().nextInt(18, 23); // Cierra entre las 6 PM y las 10 PM

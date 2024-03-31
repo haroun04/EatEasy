@@ -21,6 +21,7 @@ public class Restaurant {
     private Long id;
     private UUID uuid;
     private String name;
+    private String url;
     private String location;
     private String foodStyle;
     private String timetable;

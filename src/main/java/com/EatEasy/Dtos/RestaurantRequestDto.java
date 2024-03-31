@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class RestaurantRequestDto {
     private final String name;
+    private final String url;
     private final String location;
     private final String foodStyle;
     private final String timeTable;

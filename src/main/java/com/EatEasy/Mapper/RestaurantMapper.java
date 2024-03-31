@@ -25,6 +25,7 @@ public class RestaurantMapper {
                 restaurant.getId(),
                 restaurant.getUuid(),
                 restaurant.getName(),
+                restaurant.getUrl(),
                 restaurant.getLocation(),
                 restaurant.getFoodStyle(),
                 restaurant.getTimetable(),
@@ -49,6 +50,7 @@ public class RestaurantMapper {
                 null,
                 null,
                 restaurantRequestDto.getName(),
+                restaurantRequestDto.getUrl(),
                 restaurantRequestDto.getLocation(),
                 restaurantRequestDto.getFoodStyle(),
                 restaurantRequestDto.getTimeTable(),
@@ -65,6 +67,7 @@ public class RestaurantMapper {
     public Restaurant toModelFromRequestDto(Long restaurantId) {
         return new Restaurant(
                 restaurantId,
+                null,
                 null,
                 null,
                 null,

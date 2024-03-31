@@ -1,4 +1,3 @@
-
 package com.EatEasy.Models;
 //El primer import se pone * para el @ID
 import com.fasterxml.jackson.annotation.JsonIgnore;
