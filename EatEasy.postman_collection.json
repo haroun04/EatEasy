@@ -7,23 +7,50 @@
 	},
 	"item": [
 		{
-			"name": "Get restaurants",
+			"name": "Get By Name",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "5b1ae445-d5c5-433d-9a8a-75228401ffed",
+							"key": "username",
+							"value": "",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "user",
+							"key": "password",
+							"value": "",
 							"type": "string"
 						}
 					]
 				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/restaurants/restaurants?name=Ski",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"restaurants",
+						"restaurants"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ski"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get restaurants",
+			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -36,6 +63,27 @@
 					"path": [
 						"api",
 						"restaurants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/restaurants/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"restaurants",
+						"2"
 					]
 				}
 			},

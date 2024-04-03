@@ -53,4 +53,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
         return null;
     }
+    @Override
+    public List<Restaurant> findByNameContainingIgnoreCase(String name) {
+        return restaurantRepository.findByNameContainingIgnoreCase(name);
+    }
 }

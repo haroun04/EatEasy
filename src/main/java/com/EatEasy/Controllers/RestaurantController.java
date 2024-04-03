@@ -67,4 +67,10 @@ public class RestaurantController {
         restaurantService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<Restaurant>> searchRestaurantsByName(@RequestParam String name) {
+        List<Restaurant> restaurants = restaurantService.findByNameContainingIgnoreCase(name);
+        return ResponseEntity.ok(restaurants);
+    }
+
 }

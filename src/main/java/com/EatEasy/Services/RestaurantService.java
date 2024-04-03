@@ -13,4 +13,5 @@ public interface RestaurantService {
     void deleteById(Long id);
 
     Restaurant update(Long id, Restaurant restaurant);
+    List<Restaurant> findByNameContainingIgnoreCase(String name);
 }
