@@ -66,4 +66,13 @@ public class ReviewController {
         reviewService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    //POR ID DE RESTAURANTE
+
+    @GetMapping("/restaurant/{restaurantId}")
+    public ResponseEntity<List<Review>> getReviewsByRestaurantId(@PathVariable Long restaurantId) {
+        List<Review> reviews = reviewService.findReviewByRestaurantId(restaurantId);
+        return ResponseEntity.ok(reviews);
+    }
+
 }
