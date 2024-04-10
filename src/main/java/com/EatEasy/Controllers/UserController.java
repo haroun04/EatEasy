@@ -1,6 +1,5 @@
 package com.EatEasy.Controllers;
 
-
 import com.EatEasy.Models.User;
 import com.EatEasy.Services.UserService;
 import com.EatEasy.Dtos.UserRequestDto;
@@ -72,5 +71,19 @@ public class UserController {
         log.info("getAllBookings");
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDto> loginUser(@RequestBody UserRequestDto requestDto) {
+        log.info("loginUser");
+
+        User user = userService.findBynameAndPassword(requestDto.getName(), requestDto.getPassword());
+
+        if (user != null) {
+            UserResponseDto responseDto = userMapper.toResponse(user);
+            return ResponseEntity.ok(responseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
