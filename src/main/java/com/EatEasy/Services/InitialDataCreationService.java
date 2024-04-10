@@ -157,6 +157,7 @@ public class InitialDataCreationService {
             restaurant.setTimetable(generateTimetable());
             restaurant.setCapacity(faker.number().numberBetween(10, 100));
             restaurant.setPhoneNumber(faker.phoneNumber().phoneNumber());
+            restaurant.setStarRating(faker.number().numberBetween(1, 5));
             restaurant.setOwner(owner);
 
             restaurantService.save(restaurant);

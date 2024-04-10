@@ -27,6 +27,7 @@ public class Restaurant {
     private String timetable;
     private Integer capacity;
     private String phoneNumber;
+    private Integer starRating;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
