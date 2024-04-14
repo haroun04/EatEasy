@@ -8,6 +8,8 @@ public interface ReviewService {
 
     List<Review> findReviewByRestaurantId(Long restaurantId);
 
+    String findUserNameByReviewId(Long id);
+
     Review findById(Long id);
 
     Review save(Review review);

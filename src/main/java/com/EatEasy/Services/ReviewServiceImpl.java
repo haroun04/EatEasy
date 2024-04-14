@@ -1,6 +1,7 @@
 package com.EatEasy.Services;
 
 import com.EatEasy.Models.Review;
+import com.EatEasy.Models.User;
 import com.EatEasy.Repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,18 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> findReviewByRestaurantId(Long restaurantId) {
         return reviewRepository.findByRestaurant_Id(restaurantId);
+    }
+
+    @Override
+    public String findUserNameByReviewId(Long id) {
+        Optional<Review> optionalReview = reviewRepository.findById(id);
+        if (optionalReview.isPresent()) {
+            Review review = optionalReview.get();
+            User user = review.getUser();
+            return user != null ? user.getName() : null;
+        } else {
+            return null; // O lanzar una excepción si se desea un comportamiento diferente cuando la revisión no se encuentra
+        }
     }
 
     @Override

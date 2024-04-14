@@ -75,4 +75,13 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
+
+    //POR ID DE REVIEW DEVUELVE NAME
+    @GetMapping("/{id}/user")
+    public ResponseEntity<String> getUserNameByReviewId(@PathVariable Long id) {
+        log.info("getUserNameByReviewId");
+        String userName = reviewService.findUserNameByReviewId(id);
+        return ResponseEntity.ok(userName);
+    }
+
 }
