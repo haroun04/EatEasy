@@ -23,6 +23,7 @@ public class RestaurantResponseDto {
     private final String timeTable;
     private final Integer capacity;
     private final String phoneNumber;
+    private final Integer starRating;
     private final List<Image> images;
     private final List<Booking> bookingIds;
     private final List<Review> reviewIds;
