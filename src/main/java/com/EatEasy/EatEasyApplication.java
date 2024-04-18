@@ -12,6 +12,8 @@ public class EatEasyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EatEasyApplication.class, args);
 	}
+
+	/*
 	@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
@@ -26,4 +28,6 @@ public class EatEasyApplication {
 			service.createFakerReview(20);
 		};
 	}
+	* */
+
 }

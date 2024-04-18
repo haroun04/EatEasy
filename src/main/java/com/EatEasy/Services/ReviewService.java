@@ -10,6 +10,8 @@ public interface ReviewService {
 
     String findUserNameByReviewId(Long id);
 
+    String getUserProfilePictureByReviewId(Long id);
+
     Review findById(Long id);
 
     Review save(Review review);

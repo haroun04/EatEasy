@@ -84,4 +84,13 @@ public class ReviewController {
         return ResponseEntity.ok(userName);
     }
 
+    //POR ID DE REVIEW DEVUELVE FOTO DE PERFIL
+    @GetMapping("/{id}/userProfilePicture")
+    public ResponseEntity<String> getUserProfilePictureByReviewId(@PathVariable Long id) {
+        log.info("getUserProfilePictureByReviewId");
+        String userProfilePicture = reviewService.getUserProfilePictureByReviewId(id);
+        return ResponseEntity.ok(userProfilePicture);
+    }
+
+
 }

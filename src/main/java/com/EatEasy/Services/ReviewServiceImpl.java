@@ -42,6 +42,18 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public String getUserProfilePictureByReviewId(Long id) {
+        Optional<Review> optionalReview = reviewRepository.findById(id);
+        if (optionalReview.isPresent()) {
+            Review review = optionalReview.get();
+            User user = review.getUser();
+            return user != null ? user.getProfilePicture() : null;
+        } else {
+            return null; // O lanzar una excepción si se desea un comportamiento diferente cuando la revisión no se encuentra
+        }
+    }
+
+    @Override
     public Review findById(Long id) {
         return reviewRepository.findById(id).orElseThrow();
     }

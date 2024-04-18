@@ -16,6 +16,7 @@ public class UserMapper {
                 user.getUuid(),
                 user.getName(),
                 user.getEmail(),
+                user.getProfilePicture(),
                 user.getFavoriteRestaurants(),
                 user.getBookings(),
                 user.getReviews()
@@ -35,12 +36,14 @@ public class UserMapper {
                 userRequestDto.getPassword(),
                 null,
                 null,
+                null,
                 null
         );
     }
     public User toModelfromRequestDto(Long userID) {
         return new User(
                 userID,
+                null,
                 null,
                 null,
                 null,

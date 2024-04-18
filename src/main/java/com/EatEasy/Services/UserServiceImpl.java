@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
             user.setName(model.getName());
             user.setEmail(model.getEmail());
             user.setPassword(model.getPassword());
+            user.setProfilePicture(model.getProfilePicture());
             return userRepository.save(user);
         }
         return null;

@@ -223,7 +223,6 @@ public class InitialDataCreationService {
         if (number <= 0) return;
         Faker faker = new Faker();
 
-        // Obtener una lista de propietarios existentes
         List<Owner> owners = ownerService.findAll();
 
         for (int i = 0; i < number; i++) {
@@ -232,9 +231,18 @@ public class InitialDataCreationService {
             user.setName(faker.name().fullName());
             user.setEmail(faker.internet().emailAddress());
             user.setPassword(faker.internet().password());
+            user.setProfilePicture(userProfilePicture());
 
             userService.save(user);
         }
+    }
+
+    public static String userProfilePicture() {
+        String[] url = {
+                "assets/img/perfil-desconocido.png",  "assets/img/perfil1.jpg", "assets/img/perfil2.png", "assets/img/perfil3.jpg", "assets/img/perfil4.jpg", "assets/img/perfil5.jpg"
+        };
+        int index = ThreadLocalRandom.current().nextInt(url.length);
+        return url[index];
     }
 
 }
