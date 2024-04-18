@@ -3,6 +3,7 @@ package com.EatEasy.Services;
 import com.EatEasy.Models.User;
 import com.EatEasy.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(serRepository userRepository) {
         this.userRepository = userRepository;
     }
 
