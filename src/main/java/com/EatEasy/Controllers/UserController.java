@@ -1,10 +1,10 @@
 package com.EatEasy.Controllers;
 
 import com.EatEasy.Models.User;
-import com.EatEasy.Services.UserService;
 import com.EatEasy.Dtos.UserRequestDto;
 import com.EatEasy.Dtos.UserResponseDto;
 import com.EatEasy.Mapper.UserMapper;
+import com.EatEasy.Services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
