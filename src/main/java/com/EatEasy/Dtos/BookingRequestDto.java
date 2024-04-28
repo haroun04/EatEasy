@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookingRequestDto {
     private final Integer numberDiners;
-    private final Long userId;
+   // private final Long userId;
     private final Long restaurantId;
 }

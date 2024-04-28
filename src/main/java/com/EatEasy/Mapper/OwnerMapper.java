@@ -1,7 +1,5 @@
 package com.EatEasy.Mapper;
 
-import com.EatEasy.Dtos.AdminResponseDto;
-import com.EatEasy.Models.Admin;
 import com.EatEasy.Models.Owner;
 import com.EatEasy.Dtos.OwnerRequestDto;
 import com.EatEasy.Dtos.OwnerResponseDto;

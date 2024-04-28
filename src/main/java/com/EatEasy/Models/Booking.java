@@ -2,6 +2,7 @@ package com.EatEasy.Models;
 //El primer import se pone * para el @ID
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import com.EatEasy.Models.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,12 +25,12 @@ public class Booking {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @CreatedDate
-    private LocalDateTime reservedAt;
-
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    @CreatedDate
+    private LocalDateTime reservedAt;
 
     @JsonIgnore
     @ManyToOne

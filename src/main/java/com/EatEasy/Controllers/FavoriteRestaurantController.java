@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/favorite-restaurants")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 public class FavoriteRestaurantController {
     private final FavoriteRestaurantMapper favoriteRestaurantMapper;
     private final FavoriteRestaurantService favoriteRestaurantService;

@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/images")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 public class ImageController {
     private final ImageMapper imageMapper;
     private final ImageService imageService;

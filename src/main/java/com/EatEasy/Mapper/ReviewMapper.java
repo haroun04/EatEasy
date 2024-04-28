@@ -14,13 +14,12 @@ import java.util.stream.Collectors;
 
 @Component
 public class ReviewMapper {
-    private final UserMapper userMapper;
     private final RestaurantMapper restaurantMapper;
     private final OwnerMapper ownerMapper;
 
     @Autowired
-    public ReviewMapper(UserMapper userMapper, RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
-        this.userMapper = userMapper;
+    public ReviewMapper(RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
+     //   this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
         this.ownerMapper = ownerMapper;
     }

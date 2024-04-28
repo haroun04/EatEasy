@@ -1,7 +1,8 @@
+
 package com.EatEasy.Services;
 
 import com.EatEasy.Models.Review;
-import com.EatEasy.Models.User;
+import com.EatEasy.Models.user.User;
 import com.EatEasy.Repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,6 +3,7 @@ package com.EatEasy.Models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import com.EatEasy.Models.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,14 +23,13 @@ public class Review {
     private Integer assessment;
     private LocalDateTime createdAt;
 
-    @JsonIgnore //Para que no se te genere un bucle infinito
-    @ManyToOne
-    private User user;
 
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
-
+    @JsonIgnore //Para que no se te genere un bucle infinito
+    @ManyToOne
+    private User user;
     @JsonIgnore
     @ManyToOne
     private Owner owner;

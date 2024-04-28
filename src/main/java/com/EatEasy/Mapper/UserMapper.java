@@ -1,49 +1,41 @@
 package com.EatEasy.Mapper;
-import com.EatEasy.Models.User;
-import com.EatEasy.Dtos.UserRequestDto;
-import com.EatEasy.Dtos.UserResponseDto;
-import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+
+import com.EatEasy.Dtos.UserDto.UserRequestDto;
+import com.EatEasy.Dtos.UserDto.UserResponseDto;
+import com.EatEasy.Models.user.User;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-
     public UserResponseDto toResponse(User user) {
         return new UserResponseDto(
                 user.getId(),
-                user.getUuid(),
                 user.getName(),
                 user.getEmail(),
                 user.getProfilePicture(),
                 user.getFavoriteRestaurants(),
-                user.getBookings(),
+               user.getBookings(),
                 user.getReviews()
         );
     }
 
-    public List<UserResponseDto> toResponseDtoList(List<User> users) {
-        return users.stream().map(this::toResponse).collect(Collectors.toList());
-    }
-
-    public User toModel(UserRequestDto userRequestDto) {
+    public User toModel(UserRequestDto userDTO) {
         return new User(
                 null,
-                null,
-                userRequestDto.getName(),
-                userRequestDto.getEmail(),
-                userRequestDto.getPassword(),
-                null,
-                null,
+                userDTO.getName(),
+                userDTO.getEmail(),
+                userDTO.getPassword(),
+                userDTO.getPassword(),
+            null,
                 null,
                 null
         );
     }
-    public User toModelfromRequestDto(Long userID) {
+
+    public User toModelFromRequestDto(Long userID) {
         return new User(
                 userID,
-                null,
                 null,
                 null,
                 null,

@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 @Component
 public class BookingMapper {
 
-    private final UserMapper userMapper;
+   // private final UserMapper userMapper;
     private final RestaurantMapper restaurantMapper;
 
     @Autowired
     public BookingMapper(UserMapper userMapper, RestaurantMapper restaurantMapper) {
-        this.userMapper = userMapper;
+     //   this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
     }
 
@@ -30,7 +30,7 @@ public class BookingMapper {
                 booking.getNumberDiners(),
                 booking.getCreatedAt(),
                 booking.getReservedAt(),
-                booking.getUser(),
+         //       booking.getUser(),
                 booking.getRestaurant()
         );
     }
@@ -49,7 +49,7 @@ public class BookingMapper {
                 bookingRequestDto.getNumberDiners(),
                 null,
                 null,
-                bookingRequestDto.getUserId() != null ? userMapper.toModelfromRequestDto(bookingRequestDto.getUserId()) : null,
+         null,
                 bookingRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(bookingRequestDto.getRestaurantId()) : null
         );
     }

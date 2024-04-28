@@ -13,21 +13,20 @@ public class EatEasyApplication {
 		SpringApplication.run(EatEasyApplication.class, args);
 	}
 
-	/*
+/*
 	@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
+			service.createDefaultAdminUsers();
 			service.createFakerOwner(6);
-			service.createFakerUser(25);
 			service.createFakerOwner(6);
 			service.createFakerRestaurant(12);
-			service.createFakerAdmin(5);
 			service.createFakerBooking(10);
 			service.createFakerFavoriteRestaurant(8);
 			service.createFakerImage(15);
 			service.createFakerReview(20);
 		};
 	}
-	* */
+*/
 
 }

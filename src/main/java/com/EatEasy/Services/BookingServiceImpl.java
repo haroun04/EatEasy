@@ -1,6 +1,5 @@
 package com.EatEasy.Services;
 
-import com.EatEasy.Models.Admin;
 import com.EatEasy.Models.Booking;
 import com.EatEasy.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
