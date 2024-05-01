@@ -28,6 +28,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return userDetailsRepository.save(
                 new User(
                         signupRequest.getName(),
+                        signupRequest.getEmail(),
                         passwordEncoder.encode(signupRequest.getPassword()),
                         profilePictureUrl
                 )

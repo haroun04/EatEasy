@@ -26,7 +26,7 @@ public class UserMapper {
                 userDTO.getName(),
                 userDTO.getEmail(),
                 userDTO.getPassword(),
-                userDTO.getPassword(),
+                userDTO.getProfilePicture(),
             null,
                 null,
                 null

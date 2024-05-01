@@ -43,8 +43,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    public User(String name, String password, String profilePicture) {
+    public User(String name, String email ,String password, String profilePicture) {
         this.name = name;
+        this.email = email;
         this.password = password;
         this.profilePicture = profilePicture;
     }

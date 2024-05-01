@@ -29,10 +29,9 @@ public class InitialDataCreationService {
     private final RestaurantService restaurantService;
     private final ReviewService reviewService;
     private final UserDetailServiceImpl userDetailsService;
-    private final Faker faker = new Faker(new Locale("en-US"));
 
-
-
+    /*
+    * private final Faker faker = new Faker(new Locale("en-US"));
 
 
     public void createFakerBooking(int number) {
@@ -61,7 +60,12 @@ public class InitialDataCreationService {
             bookingService.save(booking);
         }
     }
+    *
+    *
+    *
+    *
 
+    */
     public LocalDateTime generateRandomReservedAt() {
         LocalDateTime now = LocalDateTime.now().plusHours(1);
         LocalDateTime maxDateTime = now.plusMonths(1);
@@ -72,6 +76,7 @@ public class InitialDataCreationService {
 
         return LocalDateTime.ofInstant(java.time.Instant.ofEpochMilli(randomMillis), java.time.ZoneId.systemDefault());
     }
+
 
     public void createFakerFavoriteRestaurant(int number) {
         if (number <= 0) return;
@@ -96,6 +101,7 @@ public class InitialDataCreationService {
         }
     }
 
+
     public void createFakerImage(int number) {
         if (number <= 0) return;
         Faker faker = new Faker();
@@ -114,6 +120,9 @@ public class InitialDataCreationService {
             imageService.save(image);
         }
     }
+
+
+
 
     public void createFakerOwner(int number) {
         if (number <= 0) return;
@@ -177,6 +186,7 @@ public class InitialDataCreationService {
         String timetable = String.format("%02d:00 AM - %02d:00 PM", openingHour, closingHour);
         return timetable;
     }
+    /*
 
     public void createFakerReview(int number) {
         if (number <= 0) return;
@@ -207,19 +217,22 @@ public class InitialDataCreationService {
             reviewService.save(review);
         }
     }
-    public void createDefaultAdminUsers() {
+
+
+    * public void createDefaultAdminUsers() {
         for (int i = 0; i < 25; i++) {
             String username = "admin" + i;
             String password = "$2a$12$K4tojeaYWMK55KzWzDWtLOuuUjRTkycWhSGHYWA2LXMZqmZUtuXPO";
             String profilePictureUrl=userProfilePicture();
 
-            User user = new User(username, password, profilePictureUrl);
+            User user = new User(username, email ,password, profilePictureUrl);
             userDetailsService.save(user);
         }
-    }
+    }*/
+
     public static String userProfilePicture() {
         String[] url = {
-                "assets/img/perfil-desconocido.png",  "assets/img/perfil1.jpg", "assets/img/perfil2.png", "assets/img/perfil3.jpg", "assets/img/perfil4.jpg", "assets/img/perfil5.jpg"
+                "assets/img/desconocido.jpg"
         };
         int index = ThreadLocalRandom.current().nextInt(url.length);
         return url[index];
