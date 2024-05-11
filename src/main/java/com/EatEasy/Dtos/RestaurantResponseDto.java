@@ -24,6 +24,8 @@ public class RestaurantResponseDto {
     private final Integer capacity;
     private final String phoneNumber;
     private final Integer starRating;
+    private final String description;
+    private final String userIframeSrc;
     private final List<Image> images;
     private final List<Booking> bookingIds;
     private final List<Review> reviewIds;

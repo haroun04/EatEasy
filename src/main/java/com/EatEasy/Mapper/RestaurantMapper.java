@@ -32,6 +32,8 @@ public class RestaurantMapper {
                 restaurant.getCapacity(),
                 restaurant.getPhoneNumber(),
                 restaurant.getStarRating(),
+                restaurant.getDescription(),
+                restaurant.getUserIframeSrc(),
                 restaurant.getImages(),
                 restaurant.getBookings(),
                 restaurant.getReviews(),
@@ -58,6 +60,8 @@ public class RestaurantMapper {
                 restaurantRequestDto.getCapacity(),
                 restaurantRequestDto.getPhoneNumber(),
                 restaurantRequestDto.getStarRating(),
+                restaurantRequestDto.getDescription(),
+                restaurantRequestDto.getUserIframeSrc(),
                 null,
                 null,
                 null,
@@ -69,6 +73,8 @@ public class RestaurantMapper {
     public Restaurant toModelFromRequestDto(Long restaurantId) {
         return new Restaurant(
                 restaurantId,
+                null,
+                null,
                 null,
                 null,
                 null,

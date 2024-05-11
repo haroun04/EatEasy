@@ -14,5 +14,7 @@ public class RestaurantRequestDto {
     private final Integer capacity;
     private final String phoneNumber;
     private final Integer starRating;
+    private final String description;
+    private final String userIframeSrc;
     private final Long owner_id;
 }

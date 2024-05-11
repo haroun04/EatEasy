@@ -28,6 +28,8 @@ public class Restaurant {
     private Integer capacity;
     private String phoneNumber;
     private Integer starRating;
+    private String description;
+    private String userIframeSrc;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
