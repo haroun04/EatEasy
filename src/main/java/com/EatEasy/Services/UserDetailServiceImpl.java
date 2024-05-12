@@ -3,8 +3,11 @@ package com.EatEasy.Services;
 
 import com.EatEasy.Models.user.User;
 import com.EatEasy.Repository.UserDetailsRepository;
+import com.EatEasy.auth.JWTService;
 import com.EatEasy.auth.SignUpRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,5 +51,26 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     public List<User> findAll() {
         return userDetailsRepository.findAll();
+    }
+
+    public User findById(Long id) {
+        return userDetailsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    }
+
+    @Autowired
+    private JWTService jwtService;
+    @Autowired
+    private UserDetailsRepository userRepository;
+
+    public User getUserByToken(String token) {
+        // Verificar y decodificar el token JWT para obtener el nombre de usuario
+        String email = jwtService.getUsernameFromToken(token);
+
+        // Buscar el usuario en la base de datos utilizando el nombre de usuario
+        User user = userRepository.findByEmail(email);
+
+        // Retornar el usuario encontrado
+        return user;
     }
 }

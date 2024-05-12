@@ -3,6 +3,7 @@ package com.EatEasy.auth;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,16 @@ public class JWTService {
             // Invalid Signing configuration / Couldn't convert Claims.
         }
         return token;
+    }
+
+    //@Value("${jwt.secret-key}")
+
+    public String getUsernameFromToken(String token) {
+        try {
+            return JWT.decode(token).getSubject();
+        } catch (JWTDecodeException exception){
+            return null;
+        }
     }
 
 }
