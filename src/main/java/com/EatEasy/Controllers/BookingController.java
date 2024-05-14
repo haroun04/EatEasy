@@ -3,6 +3,8 @@ package com.EatEasy.Controllers;
 import com.EatEasy.Dtos.BookingRequestDto;
 import com.EatEasy.Dtos.BookingResponseDto;
 import com.EatEasy.Mapper.BookingMapper;
+import com.EatEasy.Models.Booking;
+import com.EatEasy.Models.Review;
 import com.EatEasy.Services.BookingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +63,11 @@ public class BookingController {
         bookingService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    //POR ID DE USER
+        @GetMapping("/user")
+        public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable Long userId) {
+            List<Booking> bookings = bookingService.findBookingsByUserId(userId);
+            return ResponseEntity.ok(bookings);
+        }
 }

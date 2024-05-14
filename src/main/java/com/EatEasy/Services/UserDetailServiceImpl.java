@@ -5,6 +5,7 @@ import com.EatEasy.Models.user.User;
 import com.EatEasy.Repository.UserDetailsRepository;
 import com.EatEasy.auth.JWTService;
 import com.EatEasy.auth.SignUpRequest;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.token.TokenService;
@@ -42,21 +43,34 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return userDetailsRepository.save(user);
     }
 
-    public User updateUser(String email, User user) {
-        User userUpdated = this.loadUserByUsername(email);
-        userUpdated.setName(user.getName());
-        userDetailsRepository.save(userUpdated);
-        return userUpdated;
+    /*
+    *  public User updateUser(Long id, User user) {
+        User userToUpdate = userDetailsRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + id));
+
+        // Actualiza los campos solo si han sido proporcionados y son diferentes de null
+        if (user.getName() != null) {
+            userToUpdate.setName(user.getName());
+        }
+        if (user.getEmail() != null) {
+            userToUpdate.setEmail(user.getEmail());
+        }
+        // Continúa con otros campos según sea necesario
+
+        return userDetailsRepository.save(userToUpdate);
+        *
     }
+    * public User findById(Long id) {
+        return userDetailsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    }*/
+
 
     public List<User> findAll() {
         return userDetailsRepository.findAll();
     }
 
-    public User findById(Long id) {
-        return userDetailsRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
-    }
+
 
     @Autowired
     private JWTService jwtService;

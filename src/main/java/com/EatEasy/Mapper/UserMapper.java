@@ -12,8 +12,8 @@ public class UserMapper {
         return new UserResponseDto(
                 user.getId(),
                 user.getName(),
-                user.getEmail(),
                 user.getProfilePicture(),
+                user.getEmail(),
                 user.getFavoriteRestaurants(),
                user.getBookings(),
                 user.getReviews()
