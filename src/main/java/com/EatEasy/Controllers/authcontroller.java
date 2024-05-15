@@ -7,6 +7,7 @@ import com.EatEasy.auth.JWTService;
 import com.EatEasy.auth.LogInRequest;
 import com.EatEasy.auth.SignUpRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +43,7 @@ public class authcontroller {
         );
     }
 
+    /*
     @PostMapping("/signup")
     public ResponseEntity<UserDetails> signup(@RequestBody SignUpRequest signupRequest) {
         String profilePictureUrl = userProfilePicture();
@@ -48,6 +51,34 @@ public class authcontroller {
                 userDetailsService.create(signupRequest, profilePictureUrl)
         );
     }
+    * */
+
+    @PostMapping("/signup")
+    public ResponseEntity<Map<String, String>> signup(@RequestBody SignUpRequest signupRequest) {
+        try {
+            // Crear nuevo usuario
+            String profilePictureUrl = userProfilePicture();
+            userDetailsService.create(signupRequest, profilePictureUrl);
+
+            // Autenticar al nuevo usuario
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            signupRequest.getName(),
+                            signupRequest.getPassword()
+                    )
+            );
+
+            return ResponseEntity.ok(Map.of("token",
+                    jwtService.createToken(authentication.getName()
+                    ))
+            );
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Error during signup"));
+        }
+    }
+
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
