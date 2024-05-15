@@ -20,6 +20,7 @@ public class UserResponseDto {
     private final String name;
     private final String profilePicture;
     private final String email;
+    private final String password;
     private final List<FavoriteRestaurant> favoriteRestaurants;
     private final List<Booking> bookings;
     private final List<Review> reviews;

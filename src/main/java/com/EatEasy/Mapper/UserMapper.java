@@ -14,6 +14,7 @@ public class UserMapper {
                 user.getName(),
                 user.getProfilePicture(),
                 user.getEmail(),
+                user.getPassword(),
                 user.getFavoriteRestaurants(),
                user.getBookings(),
                 user.getReviews()
