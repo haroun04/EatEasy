@@ -32,7 +32,7 @@ public class Booking {
     @CreatedDate
     private LocalDateTime reservedAt;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 
