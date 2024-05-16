@@ -28,8 +28,18 @@ public class UserController {
         UserResponseDto userResponseDto = userMapper.toResponse(user);
         return ResponseEntity.ok(userResponseDto);
     }
-
-    /*@GetMapping("")
+    /*
+    @PutMapping("/{email}")
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable String email, @RequestBody UserRequestDto user) {
+        User updatedUser = userService.updateUserInfo(email, user);
+        if (updatedUser != null) {
+            UserResponseDto userResponseDto = userMapper.toResponse(updatedUser);
+            return ResponseEntity.ok(userResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         List<User> users = userService.findAll();
         List<UserResponseDto> userResponseDtos = userMapper.toResponse(users);
@@ -46,18 +56,15 @@ public class UserController {
 */
 
 
-    @GetMapping("/{email}")
-    public ResponseEntity<UserResponseDto> getUser(
-            @PathVariable String email
+    @PatchMapping("/me")
+    public ResponseEntity<UserResponseDto> updateUser(
+            @RequestBody UserRequestDto updateRequest,
+            @RequestHeader(name = "Authorization") String token
     ) {
-        return ResponseEntity.ok(userMapper.toResponse(userService.loadUserByUsername(email)));
-    }
-
-    @PostMapping
-    public ResponseEntity<UserResponseDto> postUser(
-            @RequestBody UserRequestDto user
-    ) {
-        return ResponseEntity.ok(userMapper.toResponse(userService.save(userMapper.toModel(user))));
+        String authToken = token.substring(7);
+        User updatedUser = userService.updateUserInfo(updateRequest, authToken);
+        UserResponseDto responseDto = userMapper.toResponse(updatedUser);
+        return ResponseEntity.ok(responseDto);
     }
 
 

@@ -1,14 +1,13 @@
 package com.EatEasy.Services;
 
 
+import com.EatEasy.Dtos.UserDto.UserRequestDto;
 import com.EatEasy.Models.user.User;
 import com.EatEasy.Repository.UserDetailsRepository;
 import com.EatEasy.auth.JWTService;
 import com.EatEasy.auth.SignUpRequest;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -87,4 +86,27 @@ public class UserDetailServiceImpl implements UserDetailsService {
         // Retornar el usuario encontrado
         return user;
     }
+
+    public User updateUserInfo(UserRequestDto updateRequest, String token) {
+        String email = jwtService.getUsernameFromToken(token);
+
+        User userToUpdate = userDetailsRepository.findByEmail(email);
+
+        if (updateRequest.getName() != null) {
+            userToUpdate.setName(updateRequest.getName());
+        }
+        if (updateRequest.getEmail() != null) {
+            userToUpdate.setEmail(updateRequest.getEmail());
+        }
+        if (updateRequest.getPassword() != null) {
+            userToUpdate.setPassword(updateRequest.getPassword());
+        }
+        if (updateRequest.getProfilePicture() != null) {
+            userToUpdate.setProfilePicture(updateRequest.getProfilePicture());
+        }
+
+        // Guardar y retornar el usuario actualizado
+        return userDetailsRepository.save(userToUpdate);
+    }
 }
+
