@@ -16,8 +16,7 @@ public class OwnerMapper {
                 owner.getUuid(),
                 owner.getName(),
                 owner.getEmail(),
-                owner.getRestaurants(),
-                owner.getReviews()
+                owner.getRestaurants()
         );
     }
 
@@ -32,7 +31,6 @@ public class OwnerMapper {
                 ownerRequestDto.getName(),
                 ownerRequestDto.getEmail(),
                 ownerRequestDto.getPassword(),
-                null,
                 null
         );
     }
@@ -40,7 +38,6 @@ public class OwnerMapper {
     public Owner toModelfromRequestDto(Long owner_Id) {
         return new Owner(
                 owner_Id,
-                null,
                 null,
                 null,
                 null,

@@ -30,9 +30,6 @@ public class Review {
     @JsonIgnore //Para que no se te genere un bucle infinito
     @ManyToOne
     private User user;
-    @JsonIgnore
-    @ManyToOne
-    private Owner owner;
 
 
 

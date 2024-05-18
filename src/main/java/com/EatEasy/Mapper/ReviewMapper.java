@@ -15,13 +15,11 @@ import java.util.stream.Collectors;
 @Component
 public class ReviewMapper {
     private final RestaurantMapper restaurantMapper;
-    private final OwnerMapper ownerMapper;
 
     @Autowired
     public ReviewMapper(RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
      //   this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
-        this.ownerMapper = ownerMapper;
     }
 
 
@@ -33,8 +31,7 @@ public class ReviewMapper {
                 review.getAssessment(),
                 review.getCreatedAt(),
                 review.getUser().getId(),
-                review.getRestaurant().getId(),
-                review.getOwner().getId()
+                review.getRestaurant().getId()
         );
     }
 
@@ -49,7 +46,6 @@ public class ReviewMapper {
                 reviewRequestDto.getComment(),
                 reviewRequestDto.getAssessment(),
                 reviewRequestDto.getCreatedAt(),
-                null,
                 null,
                 null
         );

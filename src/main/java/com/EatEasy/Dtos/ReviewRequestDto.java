@@ -16,5 +16,4 @@ public class ReviewRequestDto {
     private final LocalDateTime createdAt;
     private final User userId;
     private final Restaurant restaurantId;
-    private final Owner ownerId;
 }
