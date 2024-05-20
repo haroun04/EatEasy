@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 public class ReviewRequestDto {
     private final String comment;
     private final Integer assessment;
-    private final LocalDateTime createdAt;
-    private final User userId;
-    private final Restaurant restaurantId;
+    private final Long userId;
+    private final Long restaurantId;
 }

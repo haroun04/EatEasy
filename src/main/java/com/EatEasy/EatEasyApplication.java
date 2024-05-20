@@ -14,19 +14,15 @@ public class EatEasyApplication {
 	}
 
 /*
-	@Bean
+@Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
-			service.createDefaultAdminUsers();
-			service.createFakerOwner(6);
-			service.createFakerOwner(6);
-			service.createFakerRestaurant(12);
-			service.createFakerBooking(10);
-			service.createFakerFavoriteRestaurant(8);
-			service.createFakerImage(15);
 			service.createFakerReview(20);
+			//service.createFakerRestaurant(1);
 		};
 	}
-*/
+* */
+
+
 
 }
