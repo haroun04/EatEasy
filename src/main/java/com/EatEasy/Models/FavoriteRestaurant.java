@@ -19,7 +19,7 @@ public class FavoriteRestaurant {
     @JsonIgnore
     @ManyToOne
     private User user;
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 }

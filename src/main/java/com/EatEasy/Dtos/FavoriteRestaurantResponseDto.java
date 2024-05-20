@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FavoriteRestaurantResponseDto {
     private final Long id;
-    private Long userId;
+   // private Long userId;
     private Restaurant restaurantId;
 }

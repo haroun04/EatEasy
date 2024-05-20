@@ -1,5 +1,6 @@
 package com.EatEasy.Services;
 
+import com.EatEasy.Models.Booking;
 import com.EatEasy.Models.FavoriteRestaurant;
 import com.EatEasy.Repository.FavoriteRestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,10 @@ public class FavoriteRestaurantServiceImpl implements FavoriteRestaurantService 
             return favoriteRestaurantRepository.save(favoriteRestaurant);
         }
         return null;
+    }
+
+    @Override
+    public List<FavoriteRestaurant> FavoriteRestaurantByUserId(Long userId) {
+        return favoriteRestaurantRepository.findByUser_Id(userId);
     }
 }

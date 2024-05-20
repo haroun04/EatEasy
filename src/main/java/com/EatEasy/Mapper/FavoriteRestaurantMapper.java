@@ -25,7 +25,7 @@ public class FavoriteRestaurantMapper {
     public FavoriteRestaurantResponseDto toResponse(FavoriteRestaurant favoriteRestaurant) {
         return new FavoriteRestaurantResponseDto(
                 favoriteRestaurant.getId(),
-                favoriteRestaurant.getUser() != null ? favoriteRestaurant.getUser().getId() : null,
+              //  favoriteRestaurant.getUser() != null ? favoriteRestaurant.getUser().getId() : null,
                 favoriteRestaurant.getRestaurant()
         );
     }
@@ -40,7 +40,8 @@ public class FavoriteRestaurantMapper {
     public FavoriteRestaurant toModel(FavoriteRestaurantRequestDto favoriteRestaurantRequestDto) {
         return new FavoriteRestaurant(
                 0L,
-                favoriteRestaurantRequestDto.getUserId() != null ? userMapper.toModelFromRequestDto(favoriteRestaurantRequestDto.getUserId()) : null,
+                null,
+                ///favoriteRestaurantRequestDto.getUserId() != null ? userMapper.toModelFromRequestDto(favoriteRestaurantRequestDto.getUserId()) : null,
                 favoriteRestaurantRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(favoriteRestaurantRequestDto.getRestaurantId()) : null
         );
     }

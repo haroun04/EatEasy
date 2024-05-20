@@ -3,6 +3,8 @@ package com.EatEasy.Controllers;
 import com.EatEasy.Dtos.FavoriteRestaurantRequestDto;
 import com.EatEasy.Dtos.FavoriteRestaurantResponseDto;
 import com.EatEasy.Mapper.FavoriteRestaurantMapper;
+import com.EatEasy.Models.Booking;
+import com.EatEasy.Models.FavoriteRestaurant;
 import com.EatEasy.Services.FavoriteRestaurantService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,11 @@ public class FavoriteRestaurantController {
         log.info("deleteFavoriteRestaurant");
         favoriteRestaurantService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<FavoriteRestaurant>> getBookingsByUserId(@PathVariable Long userId) {
+        List<FavoriteRestaurant> favoriteRestaurants = favoriteRestaurantService.FavoriteRestaurantByUserId(userId);
+        return ResponseEntity.ok(favoriteRestaurants);
     }
 }
