@@ -62,6 +62,16 @@ public class InitialDataCreationService {
     }
     *
     *
+    *  public void createDefaultAdminUsers() {
+        for (int i = 0; i < 25; i++) {
+            String username = "admin" + i;
+            String password = "$2a$12$K4tojeaYWMK55KzWzDWtLOuuUjRTkycWhSGHYWA2LXMZqmZUtuXPO";
+            String profilePictureUrl=userProfilePicture();
+
+            User user = new User(username, email ,password, profilePictureUrl);
+            userDetailsService.save(user);
+        }
+    }
     *
     *
 
@@ -186,49 +196,36 @@ public class InitialDataCreationService {
         String timetable = String.format("%02d:00 AM - %02d:00 PM", openingHour, closingHour);
         return timetable;
     }
-    /*
+
 
     public void createFakerReview(int number) {
         if (number <= 0) return;
         Faker faker = new Faker();
         List<User> users = userDetailsService.findAll();
         List<Restaurant> restaurants = restaurantService.findAll();
-        List<Owner> owners = ownerService.findAll();
 
         for (int i = 0; i < number; i++) {
             int userIndex = faker.number().numberBetween(0, users.size());
             int restaurantIndex = faker.number().numberBetween(0, restaurants.size());
-            int ownerIndex = faker.number().numberBetween(0, owners.size());
             User user = users.get(userIndex);
             Restaurant restaurant = restaurants.get(restaurantIndex);
-            Owner owner = owners.get(ownerIndex);
 
             Review review = new Review();
+            review.setId(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
             review.setUuid(UUID.randomUUID());
             review.setComment(faker.lorem().sentence());
             review.setAssessment(faker.number().numberBetween(1, 5));
             review.setCreatedAt(LocalDateTime.now());
             review.setUser(user);
-            review.setOwner(owner);
 
             review.setRestaurant(restaurant);
-            review.setOwner(owner);
 
             reviewService.save(review);
         }
     }
 
 
-    * public void createDefaultAdminUsers() {
-        for (int i = 0; i < 25; i++) {
-            String username = "admin" + i;
-            String password = "$2a$12$K4tojeaYWMK55KzWzDWtLOuuUjRTkycWhSGHYWA2LXMZqmZUtuXPO";
-            String profilePictureUrl=userProfilePicture();
 
-            User user = new User(username, email ,password, profilePictureUrl);
-            userDetailsService.save(user);
-        }
-    }*/
 
     public static String userProfilePicture() {
         String[] url = {

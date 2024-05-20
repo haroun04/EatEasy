@@ -27,14 +27,8 @@ public class Review {
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
-    @JsonIgnore //Para que no se te genere un bucle infinito
-    @ManyToOne
-    private User user;
     @JsonIgnore
     @ManyToOne
-    private Owner owner;
-
-
-
+    private User user;
 
 }

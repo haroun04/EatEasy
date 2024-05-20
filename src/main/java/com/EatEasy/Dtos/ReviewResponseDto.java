@@ -1,5 +1,7 @@
 package com.EatEasy.Dtos;
 
+import com.EatEasy.Models.Restaurant;
+import com.EatEasy.Models.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,6 @@ public class ReviewResponseDto {
     private final String comment;
     private final Integer assessment;
     private final LocalDateTime createdAt;
-    private final Long userId;
-    private final Long restaurantId;
-    private final Long ownerId;
+    private final User user;
+    private final Restaurant restaurant;
 }

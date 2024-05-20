@@ -26,8 +26,6 @@ public class Owner {
     @OneToMany(mappedBy = "owner")
     private List<Restaurant> restaurants;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "owner")
-    private List<Review> reviews;
+
 
 }

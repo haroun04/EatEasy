@@ -46,10 +46,12 @@ public class ReviewController {
     public ResponseEntity<ReviewResponseDto> createReview(@RequestBody ReviewRequestDto reviewRequestDto) {
         log.info("createReview");
         Review review = reviewMapper.toModel(reviewRequestDto);
-        Review savedReview = reviewService.save(review);
+        Review savedReview = reviewService.save(review); // Guarda la revisión una vez
         ReviewResponseDto responseDto = reviewMapper.toResponse(savedReview);
+
         return ResponseEntity.ok(responseDto);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ReviewResponseDto> updateReview(@PathVariable Long id, @RequestBody ReviewRequestDto reviewRequestDto) {

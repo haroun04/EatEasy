@@ -8,6 +8,7 @@ import com.EatEasy.Dtos.ReviewResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -15,13 +16,12 @@ import java.util.stream.Collectors;
 @Component
 public class ReviewMapper {
     private final RestaurantMapper restaurantMapper;
-    private final OwnerMapper ownerMapper;
-
+    private final UserMapper userMapper;
     @Autowired
-    public ReviewMapper(RestaurantMapper restaurantMapper, OwnerMapper ownerMapper) {
+    public ReviewMapper(RestaurantMapper restaurantMapper, UserMapper userMapper) {
      //   this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
-        this.ownerMapper = ownerMapper;
+        this.userMapper = userMapper;
     }
 
 
@@ -32,9 +32,8 @@ public class ReviewMapper {
                 review.getComment(),
                 review.getAssessment(),
                 review.getCreatedAt(),
-                review.getUser().getId(),
-                review.getRestaurant().getId(),
-                review.getOwner().getId()
+                review.getUser(),
+                review.getRestaurant()
         );
     }
 
@@ -44,14 +43,13 @@ public class ReviewMapper {
 
     public Review toModel(ReviewRequestDto reviewRequestDto) {
         return new Review(
-                null,
+                0L,
                 UUID.randomUUID(),
                 reviewRequestDto.getComment(),
                 reviewRequestDto.getAssessment(),
-                reviewRequestDto.getCreatedAt(),
-                null,
-                null,
-                null
+                LocalDateTime.now(),
+                reviewRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(reviewRequestDto.getRestaurantId()) : null,
+                reviewRequestDto.getUserId() !=null ? userMapper.toModelFromRequestDto(reviewRequestDto.getUserId()) : null
         );
     }
 }

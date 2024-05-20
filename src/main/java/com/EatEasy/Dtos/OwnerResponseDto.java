@@ -17,5 +17,4 @@ public class OwnerResponseDto {
     private final String name;
     private final String email;
     private final List<Restaurant> restaurants;
-    private final List<Review> reviews;
 }
