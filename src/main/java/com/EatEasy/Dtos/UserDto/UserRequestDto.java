@@ -1,5 +1,6 @@
 package com.EatEasy.Dtos.UserDto;
 
+import com.EatEasy.Models.user.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class UserRequestDto {
     private final String email;
     private final String password;
     private final String profilePicture;
+    private final Role role;
 }

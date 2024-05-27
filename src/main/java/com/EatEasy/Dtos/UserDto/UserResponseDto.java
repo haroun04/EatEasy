@@ -4,6 +4,7 @@ package com.EatEasy.Dtos.UserDto;
 import com.EatEasy.Models.Booking;
 import com.EatEasy.Models.FavoriteRestaurant;
 import com.EatEasy.Models.Review;
+import com.EatEasy.Models.user.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class UserResponseDto {
     private final Long id;
     private final String name;
     private final String profilePicture;
+    private final Role role;
     private final String email;
     private final String password;
     private final List<FavoriteRestaurant> favoriteRestaurants;

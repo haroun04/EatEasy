@@ -1,6 +1,6 @@
 package com.EatEasy.Controllers;
 
-
+import com.EatEasy.Models.user.Role;
 import com.EatEasy.Models.user.User;
 import com.EatEasy.Services.UserDetailServiceImpl;
 import com.EatEasy.auth.JWTService;
@@ -42,28 +42,41 @@ public class authcontroller {
                 ))
         );
     }
+    @PostMapping("/login/admin")
+    public ResponseEntity<Map> loginAdmin(@RequestBody LogInRequest loginRequest) {
+            // Autenticar al usuario
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    loginRequest.getName(),
+                    loginRequest.getPassword()
+            ));
 
-    /*
-    @PostMapping("/signup")
-    public ResponseEntity<UserDetails> signup(@RequestBody SignUpRequest signupRequest) {
-        String profilePictureUrl = userProfilePicture();
-        return ResponseEntity.ok(
-                userDetailsService.create(signupRequest, profilePictureUrl)
-        );
+
+            // Verificar si el usuario tiene el rol de ADMIN
+            if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
+                // Generar token JWT para el usuario autenticado
+                return ResponseEntity.ok(Map.of("token",
+                        jwtService.createToken(authentication.getName()
+                        ))
+                );
+            } else {
+                // Si el usuario no es administrador, retornar un error
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Access denied"));
+            }
     }
-    * */
+
+
 
     @PostMapping("/signup")
     public ResponseEntity<Map<String, String>> signup(@RequestBody SignUpRequest signupRequest) {
         try {
-            // Crear nuevo usuario
+            // Crear nuevo usuario con el rol de USER por defecto
             String profilePictureUrl = userProfilePicture();
-            userDetailsService.create(signupRequest, profilePictureUrl);
+            userDetailsService.create(signupRequest, profilePictureUrl, Role.USER);
 
             // Autenticar al nuevo usuario
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            signupRequest.getName(),
+                            signupRequest.getEmail(),
                             signupRequest.getPassword()
                     )
             );
@@ -79,6 +92,31 @@ public class authcontroller {
         }
     }
 
+    @PostMapping("/signup/admin")
+    public ResponseEntity<Map<String, String>> signupAdmin(@RequestBody SignUpRequest signupRequest) {
+        try {
+            // Crear nuevo usuario con el rol de ADMIN
+            String profilePictureUrl = userProfilePicture();
+            userDetailsService.create(signupRequest, profilePictureUrl, Role.ADMIN);
+
+            // Autenticar al nuevo usuario
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            signupRequest.getEmail(),
+                            signupRequest.getPassword()
+                    )
+            );
+
+            return ResponseEntity.ok(Map.of("token",
+                    jwtService.createToken(authentication.getName()
+                    ))
+            );
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Error during signup"));
+        }
+    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {

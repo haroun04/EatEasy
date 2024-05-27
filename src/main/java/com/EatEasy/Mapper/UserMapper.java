@@ -6,6 +6,8 @@ import com.EatEasy.Dtos.UserDto.UserResponseDto;
 import com.EatEasy.Models.user.User;
 import org.springframework.stereotype.Component;
 
+import static net.sf.jsqlparser.util.validation.metadata.NamedObject.role;
+
 @Component
 public class UserMapper {
     public UserResponseDto toResponse(User user) {
@@ -13,6 +15,7 @@ public class UserMapper {
                 user.getId(),
                 user.getName(),
                 user.getProfilePicture(),
+                user.getRole(),
                 user.getEmail(),
                 user.getPassword(),
                 user.getFavoriteRestaurants(),
@@ -28,6 +31,7 @@ public class UserMapper {
                 userDTO.getEmail(),
                 userDTO.getPassword(),
                 userDTO.getProfilePicture(),
+                userDTO.getRole(),
             null,
                 null,
                 null
@@ -37,6 +41,7 @@ public class UserMapper {
     public User toModelFromRequestDto(Long userID) {
         return new User(
                 userID,
+                null,
                 null,
                 null,
                 null,

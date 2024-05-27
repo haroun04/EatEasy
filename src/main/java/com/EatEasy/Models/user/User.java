@@ -31,6 +31,9 @@ public class User implements UserDetails {
     private String password;
     private String profilePicture;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<FavoriteRestaurant> favoriteRestaurants;
@@ -43,17 +46,18 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    public User(String name, String email ,String password, String profilePicture) {
+    public User(String name, String email ,String password, String profilePicture, Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.profilePicture = profilePicture;
+        this.role = role;
     }
     // En esta lo que hace es que llama a la clase role que es la que tenemos que va a haber un usuario admin y un manager
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return role.getAuthorities();
     }
 
     @Override
@@ -65,6 +69,7 @@ public class User implements UserDetails {
     public String getUsername() {
         return this.email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

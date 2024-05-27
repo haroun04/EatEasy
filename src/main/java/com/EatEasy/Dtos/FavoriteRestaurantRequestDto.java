@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 public class FavoriteRestaurantRequestDto {
-   // private final Long userId;
+    private Boolean liked;
     private final Long restaurantId;
 }
+

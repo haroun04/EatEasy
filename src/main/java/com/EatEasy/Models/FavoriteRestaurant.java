@@ -16,6 +16,8 @@ public class FavoriteRestaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean liked;
+
     @JsonIgnore
     @ManyToOne
     private User user;

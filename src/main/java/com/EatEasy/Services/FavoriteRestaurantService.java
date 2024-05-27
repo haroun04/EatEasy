@@ -1,6 +1,5 @@
 package com.EatEasy.Services;
 
-import com.EatEasy.Models.Booking;
 import com.EatEasy.Models.FavoriteRestaurant;
 import java.util.List;
 
@@ -16,6 +15,7 @@ public interface FavoriteRestaurantService {
 
     FavoriteRestaurant update(Long id, FavoriteRestaurant favoriteRestaurant);
 
-    List<FavoriteRestaurant> FavoriteRestaurantByUserId(Long id);
+    List<FavoriteRestaurant> getFavoriteRestaurantsByUserId(Long userId);
+    FavoriteRestaurant updateFavoriteRestaurant(String token, Long id, Boolean liked);
 
 }

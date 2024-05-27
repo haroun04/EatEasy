@@ -17,12 +17,14 @@ public class EatEasyApplication {
 @Bean
 	public CommandLineRunner init(InitialDataCreationService service) {
 		return args -> {
-			service.createFakerReview(20);
+			//service.createFakerUsers(2);
+		//	service.createFakerReview(20);
 			//service.createFakerRestaurant(1);
+			service.createFakerFavoriteRestaurant(15);
 		};
 	}
-* */
 
+**/
 
 
 }

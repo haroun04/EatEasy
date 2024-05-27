@@ -5,7 +5,10 @@ import com.EatEasy.Dtos.FavoriteRestaurantResponseDto;
 import com.EatEasy.Mapper.FavoriteRestaurantMapper;
 import com.EatEasy.Models.Booking;
 import com.EatEasy.Models.FavoriteRestaurant;
+import com.EatEasy.Models.user.User;
+import com.EatEasy.Repository.UserDetailsRepository;
 import com.EatEasy.Services.FavoriteRestaurantService;
+import com.EatEasy.auth.JWTService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +22,13 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class FavoriteRestaurantController {
     private final FavoriteRestaurantMapper favoriteRestaurantMapper;
-    private final FavoriteRestaurantService favoriteRestaurantService;
-
+    private final  FavoriteRestaurantService favoriteRestaurantService;
+    private final UserDetailsRepository userDetailsRepository;
     @Autowired
-    public FavoriteRestaurantController(FavoriteRestaurantMapper favoriteRestaurantMapper, FavoriteRestaurantService favoriteRestaurantService) {
+    public FavoriteRestaurantController(FavoriteRestaurantMapper favoriteRestaurantMapper, FavoriteRestaurantService favoriteRestaurantService, UserDetailsRepository userDetailsRepository) {
         this.favoriteRestaurantMapper = favoriteRestaurantMapper;
         this.favoriteRestaurantService = favoriteRestaurantService;
+        this.userDetailsRepository = userDetailsRepository;
     }
 
     @GetMapping("")
@@ -57,9 +61,29 @@ public class FavoriteRestaurantController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<List<FavoriteRestaurant>> getBookingsByUserId(@PathVariable Long userId) {
-        List<FavoriteRestaurant> favoriteRestaurants = favoriteRestaurantService.FavoriteRestaurantByUserId(userId);
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<FavoriteRestaurant>> getFavoriteRestaurantsByUserId(@PathVariable Long userId) {
+        List<FavoriteRestaurant> favoriteRestaurants = favoriteRestaurantService.getFavoriteRestaurantsByUserId(userId);
         return ResponseEntity.ok(favoriteRestaurants);
     }
+    @Autowired
+    private JWTService jwtService;
+    @GetMapping("/favorites")
+    public ResponseEntity<List<FavoriteRestaurant>> getFavoriteRestaurants(@RequestHeader("Authorization") String token) {
+        String authToken = token.substring(7); // Eliminar "Bearer " del token
+        String email = jwtService.getUsernameFromToken(authToken);
+        User user = userDetailsRepository.findByEmail(email);
+
+        List<FavoriteRestaurant> favoriteRestaurants = favoriteRestaurantService.getFavoriteRestaurantsByUserId(user.getId());
+        return ResponseEntity.ok(favoriteRestaurants);
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<FavoriteRestaurant> updateFavoriteRestaurant(
+            @RequestHeader(name = "Authorization") String token,
+            @PathVariable Long id,
+            @RequestBody Boolean liked) {
+        FavoriteRestaurant updatedFavoriteRestaurant = favoriteRestaurantService.updateFavoriteRestaurant(token, id, liked);
+        return ResponseEntity.ok(updatedFavoriteRestaurant);
+    }
+
 }

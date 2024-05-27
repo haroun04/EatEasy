@@ -7,6 +7,7 @@ import com.EatEasy.Models.Image;
 import com.EatEasy.Models.Owner;
 import com.EatEasy.Models.Restaurant;
 import com.EatEasy.Models.Review;
+import com.EatEasy.Models.user.Role;
 import com.EatEasy.Models.user.User;
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
@@ -30,6 +31,21 @@ public class InitialDataCreationService {
     private final ReviewService reviewService;
     private final UserDetailServiceImpl userDetailsService;
 
+    public void createFakerUsers(int number) {
+        if (number <= 0) return;
+        Faker faker = new Faker();
+
+        for (int i = 0; i < number; i++) {
+            User user = new User();
+            user.setName(faker.name().fullName());
+            user.setEmail(faker.internet().emailAddress());
+            user.setPassword(faker.internet().password()); // Puedes encriptar la contraseña si es necesario
+            user.setProfilePicture(userProfilePicture());
+            user.setRole(Role.ADMIN); // O Role.ADMIN si quieres crear administradores
+
+            userDetailsService.save(user);
+        }
+    }
     /*
     * private final Faker faker = new Faker(new Locale("en-US"));
 
@@ -106,6 +122,7 @@ public class InitialDataCreationService {
             FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
             favoriteRestaurant.setUser(user);
             favoriteRestaurant.setRestaurant(restaurant);
+            favoriteRestaurant.setLiked(faker.bool().bool());
 
             favoriteRestaurantService.save(favoriteRestaurant);
         }

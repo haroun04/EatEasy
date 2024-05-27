@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FavoriteRestaurantResponseDto {
     private final Long id;
+    private Boolean liked;
    // private Long userId;
     private Restaurant restaurantId;
+
 }
