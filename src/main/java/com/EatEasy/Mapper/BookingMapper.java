@@ -6,6 +6,7 @@ import com.EatEasy.Dtos.BookingResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,12 +15,12 @@ import java.util.stream.Collectors;
 @Component
 public class BookingMapper {
 
-   // private final UserMapper userMapper;
+    private final UserMapper userMapper;
     private final RestaurantMapper restaurantMapper;
 
     @Autowired
     public BookingMapper(UserMapper userMapper, RestaurantMapper restaurantMapper) {
-     //   this.userMapper = userMapper;
+        this.userMapper = userMapper;
         this.restaurantMapper = restaurantMapper;
     }
 
@@ -30,7 +31,7 @@ public class BookingMapper {
                 booking.getNumberDiners(),
                 booking.getCreatedAt(),
                 booking.getReservedAt(),
-         //       booking.getUser(),
+                booking.getUser(),
                 booking.getRestaurant()
         );
     }
@@ -47,9 +48,9 @@ public class BookingMapper {
                 0L,
                 UUID.randomUUID(),
                 bookingRequestDto.getNumberDiners(),
-                null,
-                null,
-         null,
+                LocalDateTime.now(),
+                bookingRequestDto.getUserId() != null ? userMapper.toModelFromRequestDto(bookingRequestDto.getUserId()) : null,
+                bookingRequestDto.getReservedAt(),
                 bookingRequestDto.getRestaurantId() != null ? restaurantMapper.toModelFromRequestDto(bookingRequestDto.getRestaurantId()) : null
         );
     }
