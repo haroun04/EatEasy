@@ -8,6 +8,7 @@ import com.EatEasy.Models.Review;
 import com.EatEasy.Models.user.User;
 import com.EatEasy.Services.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,15 @@ import java.util.List;
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:4200")                      // PERMITE EL INTERCAMBIO ENTRE BACKEND Y FRONTEND PUERTO DE ANGULAR
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
     private final UserDetailServiceImpl userService;
     private final UserMapper userMapper;
-
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.findAll();
+        return ResponseEntity.ok(users);
+    }
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> getUserByToken(@RequestHeader(name = "Authorization") String token) {
         String authToken = token.substring(7);
@@ -39,12 +45,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("")
-    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        List<User> users = userService.findAll();
-        List<UserResponseDto> userResponseDtos = userMapper.toResponse(users);
-        return ResponseEntity.ok(userResponseDtos);
-    }
+
 
 
     @GetMapping("/{id}")
@@ -68,6 +69,12 @@ public class UserController {
     }
 
 
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
+        log.info("deleteUser");
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
+    }
 
     /*
     * @PutMapping("/{email}")
