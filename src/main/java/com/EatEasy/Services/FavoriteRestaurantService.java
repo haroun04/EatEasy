@@ -18,4 +18,8 @@ public interface FavoriteRestaurantService {
     List<FavoriteRestaurant> getFavoriteRestaurantsByUserId(Long userId);
     FavoriteRestaurant updateFavoriteRestaurant(String token, Long id, Boolean liked);
 
+    boolean isFavorite(Long restaurantId);
+
+    FavoriteRestaurant findByRestaurantId(Long restaurantId);
+
 }

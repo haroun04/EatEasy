@@ -39,12 +39,20 @@ public class FavoriteRestaurantController {
         );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<FavoriteRestaurantResponseDto> getFavoriteRestaurantByID(@PathVariable Long id){
-        log.info("getFavoriteRestaurantByID");
+    @GetMapping("/restaurantId/{id}")
+    public ResponseEntity<FavoriteRestaurantResponseDto> getFavoriteRestaurantByRestaurantID(@PathVariable Long id) {
+        log.info("getFavoriteRestaurantByRestaurantID");
         return ResponseEntity.ok(
-                favoriteRestaurantMapper.toResponse(favoriteRestaurantService.findById(id))
+                favoriteRestaurantMapper.toResponse(favoriteRestaurantService.findByRestaurantId(id))
         );
+    }
+
+
+    @GetMapping("/{restaurantId}/isFavorite")
+    public ResponseEntity<Boolean> isFavorite(@PathVariable Long restaurantId) {
+        log.info("Checking if restaurant with ID {} is a favorite", restaurantId);
+        boolean isFavorite = favoriteRestaurantService.isFavorite(restaurantId);
+        return ResponseEntity.ok(isFavorite);
     }
 
     @PostMapping("")

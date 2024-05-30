@@ -11,4 +11,8 @@ import java.util.List;
 public interface FavoriteRestaurantRepository extends JpaRepository<FavoriteRestaurant, Long> {
     List<FavoriteRestaurant> findByUser_Id(Long userId);
 
+    Boolean existsFavoriteRestaurantByRestaurantId(Long restaurantId);
+
+    FavoriteRestaurant findFavoriteRestaurantByRestaurantId(Long restaurantId);
+
 }

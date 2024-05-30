@@ -60,10 +60,6 @@ public class FavoriteRestaurantServiceImpl implements FavoriteRestaurantService 
     }
 
 
-
-
-
-
     public List<FavoriteRestaurant> getFavoriteRestaurantsByUserId(Long userId) {
         return favoriteRestaurantRepository.findByUser_Id(userId);
     }
@@ -92,11 +88,18 @@ public class FavoriteRestaurantServiceImpl implements FavoriteRestaurantService 
             throw new ExpressionException("User not authorized to update this favorite restaurant");
         }
 
-        // Actualizar el estado de "liked" del restaurante favorito
-        favoriteRestaurantToUpdate.setLiked(liked);
-
         // Guardar los cambios en la base de datos y devolver el restaurante favorito actualizado
         return favoriteRestaurantRepository.save(favoriteRestaurantToUpdate);
+    }
+
+    @Override
+    public boolean isFavorite(Long restaurantId) {
+        return favoriteRestaurantRepository.existsFavoriteRestaurantByRestaurantId(restaurantId);
+    }
+
+    @Override
+    public FavoriteRestaurant findByRestaurantId(Long restaurantId) {
+        return favoriteRestaurantRepository.findFavoriteRestaurantByRestaurantId(restaurantId);
     }
 
 }

@@ -122,7 +122,6 @@ public class InitialDataCreationService {
             FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
             favoriteRestaurant.setUser(user);
             favoriteRestaurant.setRestaurant(restaurant);
-            favoriteRestaurant.setLiked(faker.bool().bool());
 
             favoriteRestaurantService.save(favoriteRestaurant);
         }
