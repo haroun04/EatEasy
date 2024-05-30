@@ -46,6 +46,8 @@ public class SeccurityConfiguration {
                         .requestMatchers(mvc.pattern("/api/restaurants")).permitAll()             //Aqui son los enlaces a los cuales les permitimos ver los jugadores y equipos
                         .requestMatchers(mvc.pattern("/api/restaurants/search")).permitAll()
                         .requestMatchers(mvc.pattern("/api/restaurants/{id}")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/restaurants/uuid/{uuid}")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/restaurants/patch/{id}")).permitAll()
                         .requestMatchers(mvc.pattern("/api/reviews")).permitAll()
                         .requestMatchers(mvc.pattern("/api/reviews/restaurant/{restaurantId}")).permitAll()
                         .requestMatchers(mvc.pattern("/api/reviews/{id}/user")).permitAll()

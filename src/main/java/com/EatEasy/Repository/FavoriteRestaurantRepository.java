@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface FavoriteRestaurantRepository extends JpaRepository<FavoriteRestaurant, Long> {
+    void deleteByRestaurantId(Long restaurantId);
     List<FavoriteRestaurant> findByUser_Id(Long userId);
+
+
 
 }

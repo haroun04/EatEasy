@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
+    void deleteByRestaurantId(Long restaurantId);
     Booking findByUuid(UUID uuid);
     List<Booking> findByUser_Id(Long userId);
 

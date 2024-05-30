@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
+    void deleteByRestaurantId(Long restaurantId);
     Review findByUuid(UUID uuid);
     List<Review> findByRestaurant_Id(Long restaurantId);
     List<Review> findByUser_Id(Long userId);
