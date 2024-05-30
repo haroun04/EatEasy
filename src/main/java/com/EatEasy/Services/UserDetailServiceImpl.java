@@ -27,6 +27,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return userDetailsRepository.findByEmail(email);
     }
 
+
     public UserDetails create(SignUpRequest signupRequest, String profilePictureUrl, Role role) {
         return userDetailsRepository.save(
                 new User(
@@ -47,6 +48,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return userDetailsRepository.findAll();
     }
 
+    public void deleteUser(Long userId) {
+        userDetailsRepository.deleteById(userId);
+    }
     @Autowired
     private JWTService jwtService;
     @Autowired

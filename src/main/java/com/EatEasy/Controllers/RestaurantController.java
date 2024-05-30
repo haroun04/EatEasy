@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/restaurants")
@@ -43,6 +44,14 @@ public class RestaurantController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @GetMapping("/uuid/{uuid}")
+    public ResponseEntity<RestaurantResponseDto> getRestaurantByUUID(@PathVariable UUID uuid) {
+        log.info("getRestaurantByUUID");
+        Restaurant restaurant = restaurantService.findByUuid(uuid);
+        RestaurantResponseDto responseDto = restaurantMapper.toResponse(restaurant);
+        return ResponseEntity.ok(responseDto);
+    }
+
     @PostMapping("")
     public ResponseEntity<RestaurantResponseDto> createRestaurant(@RequestBody RestaurantRequestDto restaurantRequestDto) {
         log.info("createRestaurant");
@@ -61,7 +70,7 @@ public class RestaurantController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id/{id}")
     public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
         log.info("deleteRestaurant");
         restaurantService.deleteById(id);
@@ -73,5 +82,16 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurants);
     }
 
+    @PatchMapping("/patch/{id}")
+    public ResponseEntity<RestaurantResponseDto> patchProduct(
+            @PathVariable Long id,
+            @RequestBody RestaurantRequestDto restaurantRequestDto
+    ) {
+        log.info("patchGeneralRestaurant");
+
+        Restaurant restaurantPatched = restaurantService.patch(id, restaurantMapper.toModel(restaurantRequestDto));
+
+        return ResponseEntity.ok(restaurantMapper.toResponse(restaurantPatched));
+    }
 
 }
