@@ -5,6 +5,8 @@ import com.EatEasy.Dtos.RestaurantResponseDto;
 import com.EatEasy.Mapper.RestaurantMapper;
 import com.EatEasy.Models.Restaurant;
 import com.EatEasy.Services.RestaurantService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RequestMapping("/api/restaurants")
 @CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
+@Tag(name = "RestaurantController", description = "Operations pertaining to restaurants")
 public class RestaurantController {
 
     private final RestaurantMapper restaurantMapper;
@@ -76,6 +79,7 @@ public class RestaurantController {
         restaurantService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/search")
     public ResponseEntity<List<Restaurant>> searchRestaurantsByName(@RequestParam String name) {
         List<Restaurant> restaurants = restaurantService.findByNameContainingIgnoreCase(name);
@@ -88,10 +92,7 @@ public class RestaurantController {
             @RequestBody RestaurantRequestDto restaurantRequestDto
     ) {
         log.info("patchGeneralRestaurant");
-
         Restaurant restaurantPatched = restaurantService.patch(id, restaurantMapper.toModel(restaurantRequestDto));
-
         return ResponseEntity.ok(restaurantMapper.toResponse(restaurantPatched));
     }
-
 }

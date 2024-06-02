@@ -4,11 +4,13 @@ import com.EatEasy.Dtos.BookingRequestDto;
 import com.EatEasy.Dtos.BookingResponseDto;
 import com.EatEasy.Mapper.BookingMapper;
 import com.EatEasy.Models.Booking;
-import com.EatEasy.Models.Review;
 import com.EatEasy.Services.BookingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +49,13 @@ public class BookingController {
     public ResponseEntity<BookingResponseDto> createBooking(@RequestBody BookingRequestDto bookingRequestDto){
         log.info("createBooking");
         BookingResponseDto bookingResponseDto = bookingMapper.toResponse(bookingService.save(bookingMapper.toModel(bookingRequestDto)));
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userEmail = userDetails.getUsername(); // Suponiendo que el nombre de usuario es el email
+        }
+
         return ResponseEntity.ok(bookingResponseDto);
     }
 
@@ -57,7 +66,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingResponseDto);
     }
 
-    @DeleteMapping ("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id){
         log.info("deleteBooking");
         bookingService.deleteById(id);
@@ -65,9 +74,9 @@ public class BookingController {
     }
 
     //POR ID DE USER
-        @GetMapping("/user")
-        public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable Long userId) {
-            List<Booking> bookings = bookingService.findBookingsByUserId(userId);
-            return ResponseEntity.ok(bookings);
-        }
+    @GetMapping("/user")
+    public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable Long userId) {
+        List<Booking> bookings = bookingService.findBookingsByUserId(userId);
+        return ResponseEntity.ok(bookings);
+    }
 }
