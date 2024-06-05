@@ -60,7 +60,10 @@ public class SeccurityConfiguration {
                         .requestMatchers(mvc.pattern("/api/auth/signup/admin")).permitAll()
                         .requestMatchers(mvc.pattern("/api/user")).permitAll()
                         .requestMatchers(mvc.pattern("/api/user/{userId}")).permitAll()
-                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui/**/**", "/webjars/**").permitAll() // Permitir acceso a Swagger UI
+                        .requestMatchers("/swagger-ui.html").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/webjars/**").permitAll()
                         .requestMatchers(h2ConsoleMatcher).permitAll()
                         .anyRequest().authenticated()
                 )
