@@ -59,6 +59,7 @@ public class SeccurityConfiguration {
                         .requestMatchers(mvc.pattern("/api/auth/signup")).permitAll()
                         .requestMatchers(mvc.pattern("/api/auth/signup/admin")).permitAll()
                         .requestMatchers(mvc.pattern("/api/user")).permitAll()
+                        .requestMatchers(mvc.pattern("/api/user/me")).permitAll()
                         .requestMatchers(mvc.pattern("/api/user/{userId}")).permitAll()
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
