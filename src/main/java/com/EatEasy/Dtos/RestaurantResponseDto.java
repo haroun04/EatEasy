@@ -26,7 +26,7 @@ public class RestaurantResponseDto {
     private final Integer starRating;
     private final String description;
     private final String userIframeSrc;
-    private final List<Image> images;
+    private final List<Image> imagesIds;
     private final List<Booking> bookingIds;
     private final List<Review> reviewIds;
     private final Owner owner;

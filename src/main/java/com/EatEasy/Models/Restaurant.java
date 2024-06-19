@@ -29,7 +29,8 @@ public class Restaurant {
     private String phoneNumber;
     private Integer starRating;
     private String description;
-    private String userIframeSrc;
+    private String userIframeSrc="";
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
@@ -43,9 +44,12 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews;
 
+    /*
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<FavoriteRestaurant> favoriteRestaurants;
+    * */
+
 
     @JsonIgnore
     @ManyToOne

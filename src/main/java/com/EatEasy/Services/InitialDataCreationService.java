@@ -243,6 +243,8 @@ public class InitialDataCreationService {
 
 
 
+
+
     public static String userProfilePicture() {
         String[] url = {
                 "assets/img/desconocido.jpg"
